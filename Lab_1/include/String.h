@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STRING_h
+#define STRING_H
 
 #include "pch.h"
 
@@ -23,6 +24,7 @@ public:
 	
 	bool isEmpty() { return !size; }
 	size_t length() { return size; }
+
 private:
 	void copystr(char* from, char* to, size_t amount);	
 	
@@ -30,3 +32,6 @@ private:
 	size_t size;
 	
 };
+
+#endif /* STRING_H */
+
