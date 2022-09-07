@@ -7,9 +7,11 @@ class Student
 {
 public:
 	Student();
-	Student(int age, float GPA);
-	Student(const Student& student);
+	Student(int _age, float _GPA);
+	Student(const Student&);
 	~Student();
+
+	Student operator + (const Student&);
 
 	int getAge() const;
 	void setAge(int value);
@@ -23,3 +25,4 @@ private:
 };
 
 #endif /* STUDENT_H */
+

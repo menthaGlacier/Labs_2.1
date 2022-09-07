@@ -3,14 +3,30 @@
 
 int main()
 {
-	Student student;
+	Student student_1;
+	
+	/* Testing setters */
+	student_1.setAge(19);
+	student_1.setGPA(4.7f);
 
-	student.setAge(19);
-	student.setGPA(4.7f);
+	/* Testing constructors */
+	Student student_2 (17, 3.2f);
 
-	std::cout << "Student" << '\n';
-	std::cout << "Age: " << student.getAge() << '\n';
-	std::cout << "GPA: " << student.getGPA() << '\n';
+	/* Testing summing */
+	Student result = student_1 + student_2;
+
+	std::cout << "Student 1" << "\n";
+	std::cout << "Age: " << student_1.getAge() << "\n";
+	std::cout << "GPA: " << student_1.getGPA() << "\n\n";
+	
+	std::cout << "Student 2" << "\n";
+	std::cout << "Age: " << student_2.getAge() << "\n";
+	std::cout << "GPA: " << student_2.getGPA() << "\n\n";
+
+	std::cout << "Result" << "\n";
+	std::cout << "Age: " << result.getAge() << "\n";
+	std::cout << "GPA: " << result.getGPA() << "\n\n";
+
 	return 0;
 }
 
