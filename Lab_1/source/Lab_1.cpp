@@ -1,5 +1,6 @@
 #include "../include/pch.h"
 #include "../include/Student.h"
+#include "../include/String.h"
 
 int main()
 {

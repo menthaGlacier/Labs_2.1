@@ -24,7 +24,7 @@ public:
 	bool isEmpty() { return !size; }
 	size_t length() { return size; }
 private:
-	
+	void copystr(char* from, char* to, size_t amount);	
 	
 	char* string;
 	size_t size;

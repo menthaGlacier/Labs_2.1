@@ -4,18 +4,32 @@ String::String()
 	: string{nullptr}, size{0} {}
 
 String::String(char* c_str)
-	: string{c_str}, size{0}
+	: string{nullptr}, size{0}
 {
 	if (!c_str) { return; }
 
 	while(c_str[size] != '\0') { size++; }
+	string = new char[size];
+	copystr(c_str, string, size);
 }
 
 String::String(char* _string, size_t _size)
-	: string{_string}, size{_size} {}
+	: string{nullptr}, size{_size}
+{
+	if (!_string) { return; }
+
+	string = new char[size];
+	copystr(_string, string, size);
+}
 
 String::String(String& str)
-	: string{str.string}, size{str.size} {}
+	: string{nullptr}, size{str.size} 
+{
+	if (!str.string) { return; }
+
+	string = new char[size];
+	copystr(str.string, string, size);
+}
 
 String::~String()
 {
@@ -43,17 +57,23 @@ String& String::operator=(String& str)
 	if (this == &str) { return *this; }
 
 	delete[] string;
-
-	string = str.string;
 	size = str.size;
+	if (str.string == nullptr || size == 0) 
+	{
+		string == nullptr;
+		return *this;
+	}
+
+	string = new char[size];
+	copystr(str.string, string, size);
 	return *this;
 }
 
 String String::operator+(String& str)
 {
 	if (size + str.size == 0) { String tmp{}; return tmp; }
-	if (str.size == 0) { return *this; }
-	if (size == 0) { return str; }
+	if (str.isEmpty()) { return *this; }
+	if (isEmpty()) { return str; }
 
 	char* new_str = new char[size + str.size];
 	for(size_t i{0}; i < size || i < str.size; i++)
@@ -90,4 +110,10 @@ std::ostream& operator<<(std::ostream& out,String& str)
 		out << str[i];
 	}
 	return out;
+}
+
+void String::copystr(char* from, char* to, size_t amount)
+{
+	for(size_t i{0}; i < amount; i++)
+	{ to[i] = from[i]; }
 }
