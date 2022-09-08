@@ -70,7 +70,7 @@ String& String::operator=(const String& str)
 	return *this;
 }
 
-String String::operator+(String& str)
+String String::operator+(const String& str)
 {
 	if (size + str.size == 0) { String tmp{}; return tmp; }
 	if (str.isEmpty()) { return *this; }
@@ -87,7 +87,7 @@ String String::operator+(String& str)
 	return tmp;
 }
 
-String& String::operator+=(String& str)
+String& String::operator+=(const String& str)
 {
 	if (str.size == 0) { return *this; }
 	
