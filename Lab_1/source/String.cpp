@@ -8,7 +8,7 @@ String::String(char* c_str)
 {
 	if (!c_str) { return; }
 
-	while(c_str[size] != '\0') { size++; }
+	while (c_str[size] != '\0') { size++; }
 	string = new char[size];
 	copystr(c_str, string, size);
 }
@@ -22,7 +22,7 @@ String::String(char* _string, size_t _size)
 	copystr(_string, string, size);
 }
 
-String::String(String& str)
+String::String(const String& str)
 	: string{nullptr}, size{str.size} 
 {
 	if (!str.string) { return; }
@@ -42,17 +42,18 @@ char& String::operator[](size_t index)
 	return string[index];
 }
 
-bool String::operator==(String& str)
+bool String::operator==(const String& str)
 {
 	if (size != str.size) { return false; }
-	for(size_t i{0}; i < size; i++)
+	for (size_t i{0}; i < size; i++)
 	{
 		if (string[i] != str.string[i]) { return false; }
 	}
+
 	return true;
 }
 
-String& String::operator=(String& str)
+String& String::operator=(const String& str)
 {
 	if (this == &str) { return *this; }
 
@@ -76,11 +77,12 @@ String String::operator+(String& str)
 	if (isEmpty()) { return str; }
 
 	char* new_str = new char[size + str.size];
-	for(size_t i{0}; i < size || i < str.size; i++)
+	for (size_t i{0}; i < size || i < str.size; i++)
 	{
 		if (i < size) { new_str[i] = string[i]; }
 		if (i < str.size) { new_str[i + size] = str.string[i]; }
 	}
+
 	String tmp{new_str, size + str.size};
 	return tmp;
 }
@@ -94,26 +96,31 @@ String& String::operator+=(String& str)
 	char* old_string = string;
 	string = new char[size];
 	
-	for(size_t i{0}; i < old_size || i < str.size; i++)
+	for (size_t i{0}; i < old_size || i < str.size; i++)
 	{
 		if (i < old_size) { string[i] = old_string[i]; }
 		if (i < str.size) { string[i + old_size] = str.string[i]; }
 	}
+
 	delete[] old_string;
 	return *this;
 }
 
 std::ostream& operator<<(std::ostream& out,String& str)
 {
-	for(size_t i{0}; i < str.size; i++)
+	for (size_t i{0}; i < str.size; i++)
 	{
 		out << str[i];
 	}
+
 	return out;
 }
 
 void String::copystr(char* from, char* to, size_t amount)
 {
-	for(size_t i{0}; i < amount; i++)
-	{ to[i] = from[i]; }
+	for (size_t i{0}; i < amount; i++)
+	{
+		to[i] = from[i];
+	}
 }
+

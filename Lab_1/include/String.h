@@ -1,4 +1,4 @@
-#ifndef STRING_h
+#ifndef STRING_H
 #define STRING_H
 
 #include "pch.h"
@@ -9,16 +9,16 @@ public:
 	String();
 	String(char* c_str);
 	String(char* _string, size_t _size);
-	String(String& str);
+	String(const String& str);
 	~String();
 
 	char& operator[](size_t index);
-	bool operator==(String& str);
+	bool operator==(const String& str);
 
-	String& operator=(String& str);
+	String& operator=(const String& str);
 	
-	String operator+(String& str);
-	String& operator+=(String& str);
+	String operator+(const String& str) const;
+	String& operator+=(const String& str);
 
 	friend std::ostream& operator<<(std::ostream& out, String& str);
 	
@@ -30,7 +30,6 @@ private:
 	
 	char* string;
 	size_t size;
-	
 };
 
 #endif /* STRING_H */

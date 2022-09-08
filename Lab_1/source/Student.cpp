@@ -6,20 +6,31 @@ Student::Student()
 	GPA = 0.0f;
 }
 
-Student::Student(int _age, float _GPA)
-	: age(_age), GPA(_GPA) {}
+Student::Student(String _name, int _age, float _GPA)
+	: name(_name), age(_age), GPA(_GPA) {}
 
 Student::Student(const Student& copy)
-	: age(copy.age), GPA(copy.GPA) {}
+	: name(copy.name), age(copy.age), GPA(copy.GPA) {}
 
 Student::~Student() {}
 
 Student Student::operator + (const Student& add)
 {
 	Student result;
+	result.name = name + add.name;
 	result.age = age + add.age;
 	result.GPA = GPA + add.GPA;
 	return result;
+}
+
+String Student::getName() const
+{
+	return name; 
+}
+
+void Student::setName(String str)
+{
+	name = str;
 }
 
 int Student::getAge() const
