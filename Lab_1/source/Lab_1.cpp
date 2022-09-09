@@ -20,11 +20,11 @@ int main()
 	std::cout << "Age: " << student_1.getAge() << "\n";
 	std::cout << "GPA: " << student_1.getGPA() << "\n\n";
 	
-	std::cout << "Student 2" << "\n";
+	std::cout << "Student " << student_2.getName() << "\n";
 	std::cout << "Age: " << student_2.getAge() << "\n";
 	std::cout << "GPA: " << student_2.getGPA() << "\n\n";
 
-	std::cout << "Result" << "\n";
+	std::cout << "Result " << result.getName() << "\n";
 	std::cout << "Age: " << result.getAge() << "\n";
 	std::cout << "GPA: " << result.getGPA() << "\n\n";
 

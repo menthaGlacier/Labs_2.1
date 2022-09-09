@@ -36,7 +36,7 @@ String::~String()
 	if (string) { delete[] string; }
 }
 
-char& String::operator[](size_t index)
+char& String::operator[](size_t index) const
 {
 	if (index >= size) { throw "[ERROR]: Wrong string index"; }
 	return string[index];
@@ -70,7 +70,7 @@ String& String::operator=(const String& str)
 	return *this;
 }
 
-String String::operator+(const String& str)
+String String::operator+(const String& str) const
 {
 	if (size + str.size == 0) { String tmp{}; return tmp; }
 	if (str.isEmpty()) { return *this; }
@@ -106,7 +106,7 @@ String& String::operator+=(const String& str)
 	return *this;
 }
 
-std::ostream& operator<<(std::ostream& out,String& str)
+std::ostream& operator<<(std::ostream& out, const String& str)
 {
 	for (size_t i{0}; i < str.size; i++)
 	{
@@ -114,6 +114,16 @@ std::ostream& operator<<(std::ostream& out,String& str)
 	}
 
 	return out;
+}
+
+bool String::isEmpty() const
+{
+	return !size;
+}
+
+size_t String::getLength() const
+{
+	return size;
 }
 
 void String::copystr(char* from, char* to, size_t amount)

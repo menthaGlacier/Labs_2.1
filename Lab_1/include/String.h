@@ -12,7 +12,7 @@ public:
 	String(const String& str);
 	~String();
 
-	char& operator[](size_t index);
+	char& operator[](size_t index) const;
 	bool operator==(const String& str);
 
 	String& operator=(const String& str);
@@ -20,10 +20,10 @@ public:
 	String operator+(const String& str) const;
 	String& operator+=(const String& str);
 
-	friend std::ostream& operator<<(std::ostream& out, String& str);
+	friend std::ostream& operator<<(std::ostream& out, const String& str);
 	
-	bool isEmpty() { return !size; }
-	size_t length() { return size; }
+	bool isEmpty() const;
+	size_t getLength() const;
 
 private:
 	void copystr(char* from, char* to, size_t amount);	
