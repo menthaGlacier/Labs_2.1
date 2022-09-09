@@ -15,7 +15,7 @@ public:
 	Student operator + (const Student&);
 
 	String getName() const;
-	void setName(String str);
+	void setName(const String& str);
 
 	int getAge() const;
 	void setAge(int value);

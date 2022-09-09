@@ -20,6 +20,7 @@ Student Student::operator + (const Student& add)
 	result.name = name + add.name;
 	result.age = age + add.age;
 	result.GPA = GPA + add.GPA;
+
 	return result;
 }
 
@@ -28,7 +29,7 @@ String Student::getName() const
 	return name; 
 }
 
-void Student::setName(String str)
+void Student::setName(const String& str)
 {
 	name = str;
 }
