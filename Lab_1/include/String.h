@@ -13,11 +13,7 @@ public:
 	~String();
 
 	char& operator[](size_t index) const;
-<<<<<<< HEAD
-	bool operator==(const String& str);
-=======
 	bool operator==(const String& str) const;
->>>>>>> string-fix
 
 	String& operator=(const String& str);
 	
@@ -26,14 +22,8 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& out, const String& str);
 	
-<<<<<<< HEAD
 	bool isEmpty() const;
 	size_t getLength() const;
-=======
-	bool isEmpty() const { return !size; }
-	size_t length() const { return size; }
->>>>>>> string-fix
-
 private:
 	void copystr(const char* from, char* to, size_t amount);	
 	
