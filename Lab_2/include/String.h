@@ -7,13 +7,13 @@ class String
 {
 public:
 	String();
-	String(char* c_str);
-	String(char* _string, size_t _size);
+	String(const char* c_str);
+	String(const char* _string, size_t _size);
 	String(const String& str);
 	~String();
 
 	char& operator[](size_t index) const;
-	bool operator==(const String& str);
+	bool operator==(const String& str) const;
 
 	String& operator=(const String& str);
 	
@@ -24,9 +24,8 @@ public:
 	
 	bool isEmpty() const;
 	size_t getLength() const;
-
 private:
-	void copystr(char* from, char* to, size_t amount);	
+	void copystr(const char* from, char* to, size_t amount);	
 	
 	char* string;
 	size_t size;

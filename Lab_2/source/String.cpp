@@ -3,7 +3,7 @@
 String::String()
 	: string{nullptr}, size{0} {}
 
-String::String(char* c_str)
+String::String(const char* c_str)
 	: string{nullptr}, size{0}
 {
 	if (!c_str) { return; }
@@ -13,7 +13,7 @@ String::String(char* c_str)
 	copystr(c_str, string, size);
 }
 
-String::String(char* _string, size_t _size)
+String::String(const char* _string, size_t _size)
 	: string{nullptr}, size{_size}
 {
 	if (!_string) { return; }
@@ -42,7 +42,7 @@ char& String::operator[](size_t index) const
 	return string[index];
 }
 
-bool String::operator==(const String& str)
+bool String::operator==(const String& str) const
 {
 	if (size != str.size) { return false; }
 	for (size_t i{0}; i < size; i++)
@@ -72,7 +72,7 @@ String& String::operator=(const String& str)
 
 String String::operator+(const String& str) const
 {
-	if (size + str.size == 0) { String tmp{}; return tmp; }
+	if (size + str.size == 0) { return String{}; }
 	if (str.isEmpty()) { return *this; }
 	if (isEmpty()) { return str; }
 
@@ -83,8 +83,7 @@ String String::operator+(const String& str) const
 		if (i < str.size) { new_str[i + size] = str.string[i]; }
 	}
 
-	String tmp{new_str, size + str.size};
-	return tmp;
+	return String{new_str, size + str.size};
 }
 
 String& String::operator+=(const String& str)
@@ -126,11 +125,10 @@ size_t String::getLength() const
 	return size;
 }
 
-void String::copystr(char* from, char* to, size_t amount)
+void String::copystr(const char* from, char* to, size_t amount)
 {
 	for (size_t i{0}; i < amount; i++)
 	{
 		to[i] = from[i];
 	}
 }
-

@@ -12,7 +12,8 @@ public:
 	Student(const Student&);
 	~Student();
 
-	Student operator + (const Student&);
+	Student operator+ (const Student&) const;
+	friend std::ostream& operator<<(std::ostream& out, const Student& student);
 
 	String getName() const;
 	void setName(const String& str);
@@ -30,4 +31,3 @@ private:
 };
 
 #endif /* STUDENT_H */
-
