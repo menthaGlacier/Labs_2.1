@@ -7,26 +7,26 @@ class String
 {
 public:
 	String();
-	String(char* c_str);
-	String(char* _string, size_t _size);
+	String(const char* c_str);
+	String(const char* _string, size_t _size);
 	String(const String& str);
 	~String();
 
-	char& operator[](size_t index);
-	bool operator==(const String& str);
+	char& operator[](size_t index) const;
+	bool operator==(const String& str) const;
 
 	String& operator=(const String& str);
 	
 	String operator+(const String& str) const;
 	String& operator+=(const String& str);
 
-	friend std::ostream& operator<<(std::ostream& out, String& str);
+	friend std::ostream& operator<<(std::ostream& out, const String& str);
 	
-	bool isEmpty() { return !size; }
-	size_t length() { return size; }
+	bool isEmpty() const { return !size; }
+	size_t length() const { return size; }
 
 private:
-	void copystr(char* from, char* to, size_t amount);	
+	void copystr(const char* from, char* to, size_t amount);	
 	
 	char* string;
 	size_t size;
