@@ -11,7 +11,7 @@ Student::Student(const Student& copy)
 
 Student::~Student() {}
 
-Student Student::operator+ (const Student& add) const
+Student Student::operator+(const Student& add) const
 {
 	Student result;
 	result.name = name + add.name;
@@ -19,6 +19,14 @@ Student Student::operator+ (const Student& add) const
 	result.GPA = GPA + add.GPA;
 
 	return result;
+}
+
+std::ostream& operator<<(std::ostream& out, const Student& student)
+{
+        out << "Name: " << student.name <<
+                " | Age: " << student.age <<
+                " | GPA: " << student.GPA;
+        return out;
 }
 
 String Student::getName() const
@@ -51,10 +59,3 @@ void Student::setGPA(float value)
 	GPA = value;
 }
 
-std::ostream& operator<<(std::ostream& out, const Student& student)
-{
-	out << "Name: " << student.name <<
-	   	" | Age: " << student.age <<
-	   	" | GPA: " << student.GPA;
-	return out;
-}
