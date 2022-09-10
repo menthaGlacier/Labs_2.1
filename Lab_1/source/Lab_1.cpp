@@ -16,18 +16,12 @@ int main()
 	/* Testing summing */
 	Student result = student_1 + student_2;
 
-	std::cout << "Student " << student_1.getName() << "\n";
-	std::cout << "Age: " << student_1.getAge() << "\n";
-	std::cout << "GPA: " << student_1.getGPA() << "\n\n";
+	/* Testing output */
+	std::cout << student_1 << '\n';
+	std::cout << student_2 << '\n';
+	std::cout << result << '\n';
 	
-	std::cout << "Student 2" << "\n";
-	std::cout << "Age: " << student_2.getAge() << "\n";
-	std::cout << "GPA: " << student_2.getGPA() << "\n\n";
-
-	std::cout << "Result" << "\n";
-	std::cout << "Age: " << result.getAge() << "\n";
-	std::cout << "GPA: " << result.getGPA() << "\n\n";
-
+	std::cout << std::endl;
 	return 0;
 }
 

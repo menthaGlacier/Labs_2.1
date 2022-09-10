@@ -1,10 +1,7 @@
 #include "../include/Student.h"
 
 Student::Student()
-{
-	age = 0;
-	GPA = 0.0f;
-}
+	: name{}, age{ 0 }, GPA{ 0.0f } {}
 
 Student::Student(String _name, int _age, float _GPA)
 	: name(_name), age(_age), GPA(_GPA) {}
@@ -14,7 +11,7 @@ Student::Student(const Student& copy)
 
 Student::~Student() {}
 
-Student Student::operator + (const Student& add)
+Student Student::operator+ (const Student& add) const
 {
 	Student result;
 	result.name = name + add.name;
@@ -53,3 +50,10 @@ void Student::setGPA(float value)
 	GPA = value;
 }
 
+std::ostream& operator<<(std::ostream& out, const Student& student)
+{
+	out << "Name: " << student.name <<
+	   	" | Age: " << student.age <<
+	   	" | GPA: " << student.GPA;
+	return out;
+}
