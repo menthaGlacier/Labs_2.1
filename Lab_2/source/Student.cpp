@@ -29,7 +29,7 @@ Student Student::operator+(const Student& add) const
 	Student result;
 	result.name = name + add.name;
 	result.age = age + add.age;
-	result.GPA = GPA + add.GPA;
+	result.GPA = (GPA + add.GPA) / 2.0f;
 
 	return result;
 }
@@ -51,7 +51,7 @@ Student Student::operator+(int add) const
 Student Student::operator+(float add) const
 {
 	Student result(*this);
-	result.GPA = (result.GPA + add) / 2.0f;
+	result.GPA += add;
 	return result;
 }
 
