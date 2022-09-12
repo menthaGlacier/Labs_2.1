@@ -26,10 +26,10 @@ int main()
 	student_1 = student_1 + 5;
 	student_1 = student_1 + 0.3f;
 
+	std::cout << std::endl;
+
         /* Checking results */
         std::cout << student_1 << '\n';
-        std::cout << student_2 << '\n';
-        std::cout << result << '\n';
 
 	return 0;
 }

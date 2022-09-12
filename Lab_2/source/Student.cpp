@@ -21,25 +21,22 @@ Student Student::operator+(const Student& add) const
 	return result;
 }
 
-Student Student::operator+(const String& add) const
+Student& Student::operator+(const String& add)
 {
-	Student result;
-	result.name = name + add;
-	return result;
+	name += add;
+	return *this;
 }
 
-Student Student::operator+(int add) const      
+Student& Student::operator+(int add)  
 {
-	Student result;
-	result.age = age + add;
-	return result;
+	age += add;
+	return *this;
 }
 
-Student Student::operator+(float add) const      
+Student& Student::operator+(float add)
 {
-	Student result;
-	result.GPA = GPA + add;
-	return result;
+	GPA += add;
+	return *this;
 }
 
 std::ostream& operator<<(std::ostream& out, const Student& student)

@@ -13,9 +13,9 @@ public:
 	~Student();
 
 	Student operator+(const Student&) const;
-	Student operator+(const String&) const;
-	Student operator+(int) const;
-	Student operator+(float) const;
+	Student& operator+(const String&);
+	Student& operator+(int);
+	Student& operator+(float);
 
 	friend std::ostream& operator<<(std::ostream& out, const Student& student);
 
