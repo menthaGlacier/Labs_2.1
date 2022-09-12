@@ -11,12 +11,12 @@ Student::Student(const Student& copy)
 
 Student::~Student() {}
 
-Student Student::operator+(const Student& add) const
+Student Student::addition(const Student& add) const
 {
-	Student result;
-	result.name = name + add.name;
-	result.age = age + add.age;
-	result.GPA = GPA + add.GPA;
+	Student result(*this);
+	result.name += add.name;
+	result.age += add.age;
+	result.GPA += add.GPA;
 
 	return result;
 }

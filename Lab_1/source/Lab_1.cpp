@@ -14,7 +14,7 @@ int main()
 	Student student_2 ("Armyboy", 17, 3.2f);
 
 	/* Testing summing */
-	Student result = student_1 + student_2;
+	Student result = student_1.addition(student_2);
 
 	/* Testing output */
 	std::cout << student_1 << '\n';

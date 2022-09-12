@@ -12,7 +12,7 @@ public:
 	Student(const Student&);
 	~Student();
 
-	Student operator+(const Student&) const;
+	Student addition(const Student& add) const;
 	friend std::ostream& operator<<(std::ostream& out, const Student& student);
 
 	String getName() const;
