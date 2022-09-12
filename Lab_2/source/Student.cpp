@@ -11,6 +11,19 @@ Student::Student(const Student& copy)
 
 Student::~Student() {}
 
+Student& Student::operator=(const Student& student)
+{
+	if (this == &student)
+	{
+		return *this;
+	}
+
+	name = student.name;
+	age = student.age;
+	GPA = student.GPA;
+	return *this;
+}
+
 Student Student::operator+(const Student& add) const
 {
 	Student result;

@@ -12,6 +12,8 @@ public:
 	Student(const Student&);
 	~Student();
 
+	Student& operator=(const Student&);	
+
 	Student operator+(const Student&) const;
 	Student& operator+(const String&);
 	Student& operator+(int);

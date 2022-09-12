@@ -17,19 +17,22 @@ int main()
 	Student result = student_1 + student_2;
 
 	/* Testing output */
-	std::cout << student_1 << '\n';
-	std::cout << student_2 << '\n';
-	std::cout << result << '\n';
+	std::cout << student_1 << "\n";
+	std::cout << student_2 << "\n";
+	std::cout << result << "\n";
 
 	/* Testing operators overloading */
 	student_1 = student_1 + "os";
 	student_1 = student_1 + 5;
 	student_1 = student_1 + 0.3f;
 
+	student_2 = result;
+
 	std::cout << std::endl;
 
         /* Checking results */
-        std::cout << student_1 << '\n';
+        std::cout << student_1 << "\n";
+	std::cout << result << "\n";
 
 	return 0;
 }
