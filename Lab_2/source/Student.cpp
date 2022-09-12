@@ -55,6 +55,21 @@ Student Student::operator+(float add) const
 	return result;
 }
 
+Student::operator String()
+{
+	return name;
+}
+
+Student::operator int()
+{
+	return age;
+}
+
+Student::operator float()
+{
+	return GPA;
+}
+
 std::ostream& operator<<(std::ostream& out, const Student& student)
 {
         out << "Name: " << student.name <<

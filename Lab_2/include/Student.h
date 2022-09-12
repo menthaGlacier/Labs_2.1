@@ -18,6 +18,10 @@ public:
 	Student operator+(const String&) const;
 	Student operator+(int) const;
 	Student operator+(float) const;
+	
+	explicit operator String();
+	explicit operator int();
+	explicit operator float();
 
 	friend std::ostream& operator<<(std::ostream& out, const Student& student);
 

@@ -19,14 +19,19 @@ int main()
 	/* Testing output */
 	std::cout << student_1 << "\n";
 	std::cout << student_2 << "\n";
-	std::cout << result << "\n";
+	std::cout << result << "\n\n";
 
 	/* Testing operators overloading */
 	student_1 = student_1 + "os";
 	student_1 = student_1 + 5;
 	student_1 = student_1 + 0.3f;
+	
+	std::cout << "Cast to String: " << static_cast<String>(student_1) << "\n";
+	std::cout << "Cast to int: " << static_cast<int>(student_1) << "\n";
+	std::cout << "Cast to float: " << static_cast<float>(student_1) << "\n";
 
 	student_2 = result;
+
 
 	std::cout << std::endl;
 
