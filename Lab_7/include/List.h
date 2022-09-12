@@ -17,7 +17,7 @@ public:
 	{
 		if (next == nullptr || next == this) { return; }
 		
-		while ( next != this )
+		while (next != this)
 		{	
 			List* pointer{ next };
 
@@ -37,17 +37,19 @@ public:
 
 		for ( int i{ 0 }; i != index;)
 		{
-			if ( i < index )
+			if (i < index)
 			{
 				pointer = pointer->next;
 				i++;
 			}
+
 			else
 			{
 				pointer = pointer->prev;
 				i--;
 			}
 		}
+
 		return *pointer;
 	}
 
@@ -75,7 +77,7 @@ public:
 		{
 			std::cout << "->" << pointer->data;
 			pointer = reverse ? pointer->prev : pointer->next;
-		} while ( pointer != this );
+		} while (pointer != this);
 
 		std::cout << "->[cycle]";
 	}
@@ -92,7 +94,10 @@ public:
 	
 public:
 	T data;
+
 private:
 	List* prev, *next;
 };
-#endif
+
+#endif /* TEMPLATE_LIST_H */
+

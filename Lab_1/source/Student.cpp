@@ -1,7 +1,7 @@
 #include "../include/Student.h"
 
 Student::Student()
-	: name{}, age{ 0 }, GPA{ 0.0f } {}
+	: name(), age(0), GPA(0.0f) {}
 
 Student::Student(String _name, int _age, float _GPA)
 	: name(_name), age(_age), GPA(_GPA) {}
@@ -58,4 +58,3 @@ void Student::setGPA(float value)
 {
 	GPA = value;
 }
-

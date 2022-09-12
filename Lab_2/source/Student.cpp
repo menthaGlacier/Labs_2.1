@@ -76,4 +76,3 @@ void Student::setGPA(float value)
 {
 	GPA = value;
 }
-

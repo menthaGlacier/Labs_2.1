@@ -1,23 +1,23 @@
-#include "../include/List.h"
 #include "../include/pch.h"
+#include "../include/List.h"
 
 int main()
 {
-	List<char> charList('S');	//list of chars
-	charList.insertNode('g');	//inserting values to list in different places
+	List<char> charList('S'); // list of chars
+	charList.insertNode('g'); // inserting values to list in different places
 	charList.insertNode('t', 1);
 	charList.insertNode('n', -1);
 	charList.insertNode('r', 2);
 	charList.insertNode('i', -2);
 
-	charList.print();	//normal list print
+	charList.print(); // normal list print
 	std::cout << '\n';
-	charList.prevNode().print(true);	//reversed list print, starting from previous node
+	charList.prevNode().print(true); // reversed list print, starting from previous node
 	std::cout << "\n\n";
 
-	List<int> intList(1);	//int list
-	intList.insertNode(2);	//inserting values to list
-	intList.nextNode().insertNode(3);	//we can change node, from where we count index
+	List<int> intList(1); // int list
+	intList.insertNode(2); // inserting values to list
+	intList.nextNode().insertNode(3); // we can change node, from where we count index
 	intList.insertNode(4, -1);
 
 	intList.print();
