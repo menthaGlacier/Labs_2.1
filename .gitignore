@@ -4,3 +4,9 @@
 *.vcxproj
 *.sln
 Debug
+
+# Ignore g++ binary
+test
+
+# Temporarily ignore codestyle guide
+codestyle.md
