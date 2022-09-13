@@ -67,20 +67,20 @@ Student operator-(const Student& base, const String& low)
 {
 	/* TODO Implement this after minus operator
 	overloading in the String class */
-	Student result;
+	Student result(base);
 	return result;
 }
 
 Student operator-(const Student& base, int low)
 {
-	Student result;
+	Student result(base);
 	result.age = base.age - low;
 	return result;
 }
 
 Student operator-(const Student& base, float low)
 {
-	Student result;
+	Student result(base);
 	result.GPA = base.GPA - low;
 	return result;
 }
