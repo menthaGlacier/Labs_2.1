@@ -31,12 +31,13 @@ int main()
 	std::cout << "Cast to float: " << static_cast<float>(student_1) << "\n";
 
 	student_2 = result;
-
+	result = result - student_2;
 
 	std::cout << std::endl;
 
         /* Checking results */
         std::cout << student_1 << "\n";
+	std::cout << student_2 << "\n";
 	std::cout << result << "\n";
 
 	return 0;

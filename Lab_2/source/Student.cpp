@@ -30,7 +30,6 @@ Student Student::operator+(const Student& add) const
 	result.name = name + add.name;
 	result.age = age + add.age;
 	result.GPA = (GPA + add.GPA) / 2.0f;
-
 	return result;
 }
 
@@ -54,6 +53,14 @@ Student Student::operator+(float add) const
 	result.GPA += add;
 	return result;
 }
+
+/*friend Student Student::operator-(const Student& base, const Student& low)
+{
+	Student result;
+	result.age = base.age - low.age;
+	result.GPA = base.GPA - low.GPA;
+	return result;
+}*/
 
 Student::operator String()
 {
@@ -106,4 +113,13 @@ float Student::getGPA() const
 void Student::setGPA(float value)
 {
 	GPA = value;
+}
+
+Student operator-(const Student& base, const Student& low)
+{
+	Student result;
+	result.name = "TempName";
+	result.age = base.age - low.age;
+	result.GPA = base.GPA - low.GPA;
+	return result;
 }
