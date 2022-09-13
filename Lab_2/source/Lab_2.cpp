@@ -4,8 +4,8 @@
 int main()
 {
 	/* Testing constructors */
-        Student student_1;
-	Student student_2 ("Armyboy", 17, 3.2f);
+	Student student_1("Armyboy", 17, 3.2f);
+	Student student_2(student_1);
 
 	/* Testing setters */
 	student_1.setName("Carl");
