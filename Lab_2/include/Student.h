@@ -20,6 +20,9 @@ public:
 	Student operator+(float) const;
 
 	friend Student operator-(const Student&, const Student&);
+	friend Student operator-(const Student&, const String&);
+	friend Student operator-(const Student&, int);
+	friend Student operator-(const Student&, float);
 
 	explicit operator String();
 	explicit operator int();

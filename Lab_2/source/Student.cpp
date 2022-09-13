@@ -54,6 +54,37 @@ Student Student::operator+(float add) const
 	return result;
 }
 
+Student operator-(const Student& base, const Student& low)
+{
+        Student result;
+        result.name = "TempPlaceholder";
+        result.age = base.age - low.age;
+        result.GPA = base.GPA - low.GPA;
+        return result;
+}
+
+Student operator-(const Student& base, const String& low)
+{
+	/* TODO Implement this after minus operator
+	overloading in the String class */
+	Student result;
+	return result;
+}
+
+Student operator-(const Student& base, int low)
+{
+	Student result;
+	result.age = base.age - low;
+	return result;
+}
+
+Student operator-(const Student& base, float low)
+{
+	Student result;
+	result.GPA = base.GPA - low;
+	return result;
+}
+
 Student::operator String()
 {
 	return name;
@@ -105,13 +136,4 @@ float Student::getGPA() const
 void Student::setGPA(float value)
 {
 	GPA = value;
-}
-
-Student operator-(const Student& base, const Student& low)
-{
-	Student result;
-	result.name = "TempPlaceholder";
-	result.age = base.age - low.age;
-	result.GPA = base.GPA - low.GPA;
-	return result;
 }
