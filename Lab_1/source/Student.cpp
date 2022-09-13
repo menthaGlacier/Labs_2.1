@@ -17,7 +17,6 @@ Student Student::addition(const Student& add) const
 	result.name += add.name;
 	result.age += add.age;
 	result.GPA += add.GPA;
-
 	return result;
 }
 

@@ -3,25 +3,24 @@
 
 int main()
 {
+	/* Testing constructors */
 	Student student_1;
-	
+	Student student_2("Armyboy", 17, 3.2f);
+	Student result_1(student_2);
+
 	/* Testing setters */
 	student_1.setName("Carl");
 	student_1.setAge(19);
 	student_1.setGPA(4.7f);
 
-	/* Testing constructors */
-	Student student_2 ("Armyboy", 17, 3.2f);
-
 	/* Testing summing */
-	Student result = student_1.addition(student_2);
+	Student result_2 = student_1.addition(student_2);
 
 	/* Testing output */
-	std::cout << student_1 << '\n';
-	std::cout << student_2 << '\n';
-	std::cout << result << '\n';
+	std::cout << student_1 << "\n";
+	std::cout << student_2 << "\n";
+	std::cout << result_1 << "\n";
+	std::cout << result_2 << "\n\n";
 
-	std::cout << std::endl;
 	return 0;
 }
-
