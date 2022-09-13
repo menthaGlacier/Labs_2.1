@@ -54,14 +54,6 @@ Student Student::operator+(float add) const
 	return result;
 }
 
-/*friend Student Student::operator-(const Student& base, const Student& low)
-{
-	Student result;
-	result.age = base.age - low.age;
-	result.GPA = base.GPA - low.GPA;
-	return result;
-}*/
-
 Student::operator String()
 {
 	return name;
@@ -118,7 +110,7 @@ void Student::setGPA(float value)
 Student operator-(const Student& base, const Student& low)
 {
 	Student result;
-	result.name = "TempName";
+	result.name = "TempPlaceholder";
 	result.age = base.age - low.age;
 	result.GPA = base.GPA - low.GPA;
 	return result;

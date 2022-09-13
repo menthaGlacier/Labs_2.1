@@ -31,7 +31,7 @@ int main()
 	std::cout << "Cast to float: " << static_cast<float>(student_1) << "\n";
 
 	student_2 = result;
-	result = result - student_2;
+	result = result - student_1;
 
 	std::cout << std::endl;
 
