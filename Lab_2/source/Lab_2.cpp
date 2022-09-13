@@ -39,7 +39,11 @@ int main()
 
 	/* Testing assignment */
 	student_2 = result_2;
-		
+
+	/* Testing increments */
+	++student_2;
+	result_2++;
+
 	/* Checking results */
         std::cout << student_1 << "\n";
 	std::cout << student_2 << "\n";

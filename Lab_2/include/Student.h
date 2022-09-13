@@ -24,6 +24,9 @@ public:
 	friend Student operator-(const Student&, int);
 	friend Student operator-(const Student&, float);
 
+	void operator++();
+	void operator++(int);
+
 	explicit operator String();
 	explicit operator int();
 	explicit operator float();
