@@ -56,6 +56,7 @@ Student operator-(const Student& base, const Student& low)
         result.name = base.name - low.name;
         result.age = base.age - low.age;
         result.GPA = base.GPA - low.GPA;
+	if (result.GPA < 0) { result.GPA = 0.0f; }
         return result;
 }
 
@@ -77,6 +78,7 @@ Student operator-(const Student& base, float low)
 {
 	Student result(base);
 	result.GPA = base.GPA - low;
+	if (result.GPA < 0) { result.GPA = 0.0f; }
 	return result;
 }
 
