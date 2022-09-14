@@ -28,7 +28,7 @@ int main()
 	student_1 = student_1 + 0.3f;
 	
 	/* Testing subtraction */
-	/* TODO String subtraction */ 
+	result_1 = result_1 - "ok"; 
 	result_1 = result_1 - 7;
 	result_1 = result_1 - 0.2f;
 
