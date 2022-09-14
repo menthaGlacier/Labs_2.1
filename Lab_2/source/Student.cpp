@@ -13,11 +13,7 @@ Student::~Student() {}
 
 Student& Student::operator=(const Student& student)
 {
-	if (this == &student)
-	{
-		return *this;
-	}
-
+	if (this == &student) { return *this; }
 	name = student.name;
 	age = student.age;
 	GPA = student.GPA;
@@ -57,7 +53,7 @@ Student Student::operator+(float add) const
 Student operator-(const Student& base, const Student& low)
 {
         Student result;
-        result.name = "TempPlaceholder";
+        result.name = base.name - low.name;
         result.age = base.age - low.age;
         result.GPA = base.GPA - low.GPA;
         return result;
@@ -65,9 +61,8 @@ Student operator-(const Student& base, const Student& low)
 
 Student operator-(const Student& base, const String& low)
 {
-	/* TODO Implement this after minus operator
-	overloading in the String class */
 	Student result(base);
+	result.name = base.name - low;
 	return result;
 }
 
