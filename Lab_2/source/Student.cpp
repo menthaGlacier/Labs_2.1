@@ -82,14 +82,17 @@ Student operator-(const Student& base, float low)
 	return result;
 }
 
-void Student::operator++()
-{
+Student& Student::operator++()
+{	
 	++age;
+	return *this;
 }
 
-void Student::operator++(int)
+Student Student::operator++(int)
 {
-	age++;
+	Student temp(*this);
+	++(*this);
+	return temp;
 }
 
 Student::operator String()
