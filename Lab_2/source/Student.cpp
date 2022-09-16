@@ -22,64 +22,55 @@ Student& Student::operator=(const Student& student)
 
 Student Student::operator+(const Student& add) const
 {
-	Student result;
-	result.name = name + add.name;
-	result.age = age + add.age;
-	result.GPA = (GPA + add.GPA) / 2.0f;
-	return result;
+	return Student(name + add.name, age + add.age, 
+		(GPA + add.GPA) / 2.0f); 
 }
 
 Student Student::operator+(const String& add) const
 {
-	Student result(*this);
-	result.name += add;
-	return result;
+	return Student(name + add, age, GPA);
 }
 
 Student Student::operator+(int add) const
 {
-	Student result(*this);
-	result.age += add;
-	return result;
+	return Student(name, age + add, GPA);
 }
 
 Student Student::operator+(float add) const
 {
-	Student result(*this);
-	result.GPA += add;
-	return result;
+	return Student(name, age, GPA + add);
 }
 
 Student operator-(const Student& base, const Student& low)
 {
-        Student result;
-        result.name = base.name - low.name;
-        result.age = base.age - low.age;
-        result.GPA = base.GPA - low.GPA;
-	if (result.GPA < 0) { result.GPA = 0.0f; }
-        return result;
+	if ((base.GPA - low.GPA) < 0)
+	{
+		return Student(base.name - low.name, 
+			base.age - low.age, 0.0f);
+	}
+
+	return Student(base.name - low.name, base.age - low.age,
+		base.GPA - low.GPA);
 }
 
 Student operator-(const Student& base, const String& low)
 {
-	Student result(base);
-	result.name = base.name - low;
-	return result;
+	return Student(base.name - low, base.age, base.GPA);
 }
 
 Student operator-(const Student& base, int low)
 {
-	Student result(base);
-	result.age = base.age - low;
-	return result;
+	return Student(base.name, base.age - low, base.GPA);
 }
 
 Student operator-(const Student& base, float low)
 {
-	Student result(base);
-	result.GPA = base.GPA - low;
-	if (result.GPA < 0) { result.GPA = 0.0f; }
-	return result;
+	if (base.GPA - low < 0)
+	{
+		return Student(base.name, base.age, 0.0f);
+	}
+
+	return Student(base.name, base.age, base.GPA - low);
 }
 
 Student& Student::operator++()
