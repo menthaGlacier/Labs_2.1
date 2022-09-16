@@ -13,11 +13,8 @@ Student::~Student() {}
 
 Student Student::addition(const Student& add) const
 {
-	Student result(*this);
-	result.name += add.name;
-	result.age += add.age;
-	result.GPA += add.GPA;
-	return result;
+	return Student(name + add.name, age + add.age,
+		(GPA + add.GPA) / 2.0f);
 }
 
 std::ostream& operator<<(std::ostream& out, const Student& student)
