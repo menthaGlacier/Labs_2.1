@@ -23,7 +23,6 @@ class File
 {
 public:
 	File();
-	File(std::fstream _fl, FlMode _mode, FlType _type);
 	~File();
 
 	bool isOpen() const;
@@ -31,13 +30,12 @@ public:
 	void open(FlMode mode, FlType type);
 	void close();
 
-	//std::fstream getFl() const;
+	std::fstream& getFl();
 	FlMode getMode() const;
 	FlType getType() const;
 
-	std::fstream fl;
 private:
-
+	std::fstream fl;
 	FlMode mode;
 	FlType type;
 };

@@ -3,17 +3,6 @@
 File::File()
 	: fl(nullptr), mode(FlMode::None), type(FlType::None) {}
 
-File::File(std::fstream _fl, FlMode _mode, FlType _type)
-	: fl(nullptr), mode(FlMode::None), type(FlType::None) 
-{
-	if (!fl.is_open()) { return; }
-	if (_mode == FlMode::Read && _type == FlType::Text) { return; }
-
-	//fl = _fl;
-	mode = _mode;
-	type = _type;
-}
-
 File::~File()
 {
 	fl.close();
@@ -53,21 +42,21 @@ File& operator<<(File& file, Student& student)
 
 	if (file.getType() == FlType::Binary)
 	{
-		file.fl.write((reinterpret_cast<char*>(&student)), sizeof(Student));
+		file.getFl().write((reinterpret_cast<char*>(&student)), sizeof(Student));
 	}
 
 	if (file.getType() == FlType::Text)
 	{
-		file.fl << student.getName() << " " << student.getAge() << " " << student.getGPA() << "\n"; 
+		file.getFl() << student.getName() << " " << student.getAge() << " " << student.getGPA() << "\n"; 
 	}
 
 	return file;
 }
 
-/*std::fstream File::getFl() const
+std::fstream& File::getFl()
 {
 	return fl;
-}*/
+}
 
 FlMode File::getMode() const
 {
