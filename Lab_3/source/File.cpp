@@ -13,22 +13,27 @@ bool File::isOpen() const
         return fl.is_open();
 }
 
-/*
+
 void File::open(FlMode flMode, FlType flType)
 {
-	if (fl.is_open()) { fl.close() }
-	if (flMode == FlMode::None || FlType == FlType::None) { return; }
+	if (fl.is_open()) { fl.close(); }
+	if (flMode == FlMode::None || flType == FlType::None) { return; }
 
-	if (flType == FlType::Binary) {	fl.open("LAB.bat"); }
-	else if (flType == FlType::Text) { fl.open("Lab.txt"); }
+	if (flMode == FlMode::Read)
+	{
+		if (flType == FlType::Binary) { fl.open("LAB.bin", std::fstream::in | std::fstream::binary); }
+		if (flType == FlType::Text) { return; }
+	}
 
-	if (flMode == FlMode::Read) { fl.setf(std::fstream::in); }
-	else if (flMode == FlMode::Write) { fl.setf(std::fstream::out); }
-	else if (flMode == FlMode::ReadWrite) { fl.setf(std::fstream::in | std::fstream::out); } 
+	else if (flMode == FlMode::Write)
+	{       
+		if (flType == FlType::Binary) { fl.open("LAB.txt", std::fstream::out | std::fstream::binary); }
+		if (flType == FlType::Text) { fl.open("LAB.txt", std::fstream::out); }
+	}
 
 	mode = flMode; type = flType;
 }
-*/
+
 
 void File::close()
 {
