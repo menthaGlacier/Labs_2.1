@@ -54,7 +54,8 @@ int main()
 	File fileBin, fileText;
 	fileBin.open(FlMode::Write, FlType::Binary);
 	fileText.open(FlMode::Write, FlType::Text);
-	file << student_1;
+	fileBin << student_1;
+	fileText << student_1;
 
 	return 0;
 }
