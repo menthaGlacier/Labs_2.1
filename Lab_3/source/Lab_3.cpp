@@ -1,5 +1,6 @@
 #include "../include/pch.h"
 #include "../include/Student.h"
+#include "../include/File.h"
 
 int main()
 {
@@ -49,6 +50,8 @@ int main()
 	std::cout << student_2 << "\n";
 	std::cout << result_1 << "\n";
 	std::cout << result_2 << "\n\n";
+
+	
 
 	return 0;
 }
