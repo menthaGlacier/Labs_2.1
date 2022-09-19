@@ -27,7 +27,7 @@ void File::open(FlMode flMode, FlType flType)
 
 	else if (flMode == FlMode::Write)
 	{       
-		if (flType == FlType::Binary) { fl.open("LAB.txt", std::fstream::out | std::fstream::binary); }
+		if (flType == FlType::Binary) { fl.open("LAB.bin", std::fstream::out | std::fstream::binary); }
 		if (flType == FlType::Text) { fl.open("LAB.txt", std::fstream::out); }
 	}
 

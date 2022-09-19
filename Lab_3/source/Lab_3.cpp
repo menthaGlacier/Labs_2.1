@@ -51,7 +51,10 @@ int main()
 	std::cout << result_1 << "\n";
 	std::cout << result_2 << "\n\n";
 
-	
+	File fileBin, fileText;
+	fileBin.open(FlMode::Write, FlType::Binary);
+	fileText.open(FlMode::Write, FlType::Text);
+	file << student_1;
 
 	return 0;
 }
