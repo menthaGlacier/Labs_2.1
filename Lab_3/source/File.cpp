@@ -42,33 +42,31 @@ void File::close()
 
 File& operator<<(File& file, Student& student)
 {
-	if (file.getMode() == FlMode::None || file.getMode() == FlMode::Read) { return file; }
-	if (file.getType() == FlType::None || !file.isOpen()) { return file; }
+	if (file.mode == FlMode::None || file.mode == FlMode::Read) { return file; }
+	if (file.type == FlType::None || !file.fl.is_open()) { return file; }
 
-	if (file.getType() == FlType::Binary)
+	if (file.type == FlType::Binary)
 	{
-		file.getFl().write((reinterpret_cast<char*>(&student)), sizeof(Student));
+		file.fl.write((reinterpret_cast<char*>(&student)), sizeof(Student));
 	}
 
-	if (file.getType() == FlType::Text)
+	if (file.type == FlType::Text)
 	{
-		file.getFl() << student.getName() << " " << student.getAge() << " " << student.getGPA() << "\n"; 
+		file.fl << student.getName() << " " << student.getAge() << " " << student.getGPA() << "\n"; 
 	}
 
 	return file;
 }
 
-std::fstream& File::getFl()
+File& operator>>(File& file, Student& student)
 {
-	return fl;
-}
+        if (file.mode == FlMode::None || file.mode == FlMode::Write) { return file; }
+        if (file.type == FlType::None || !file.fl.is_open()) { return file; }
 
-FlMode File::getMode() const
-{
-	return mode;
-}
+        if (file.type == FlType::Binary)
+        {
+                file.fl.read((reinterpret_cast<char*>(&student)), sizeof(Student));
+        }
 
-FlType File::getType() const
-{
-	return type;
+        return file;
 }

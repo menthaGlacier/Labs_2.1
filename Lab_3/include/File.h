@@ -28,17 +28,14 @@ public:
 
 	void open(FlMode mode, FlType type);
 	void close();
-
-	std::fstream& getFl();
-	FlMode getMode() const;
-	FlType getType() const;
+	
+	friend File& operator<<(File& file, Student& student);
+	friend File& operator>>(File& file, Student& student);
 
 private:
 	std::fstream fl;
 	FlMode mode;
 	FlType type;
 };
-
-File& operator<<(File& file, Student& student);
 
 #endif /* FILE_H */
