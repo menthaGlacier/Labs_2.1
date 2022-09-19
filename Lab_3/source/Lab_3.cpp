@@ -58,6 +58,13 @@ int main()
 	
 	fileBin << student_1;
 	fileText << student_1;
+	fileBin.close();
+	fileText.close();
+
+	/* Testing reading from a file */
+	fileBin.open(FlMode::Read, FlType::Binary);
+	fileBin >> result_2;
+	std::cout << result_2;
 
 	return 0;
 }
