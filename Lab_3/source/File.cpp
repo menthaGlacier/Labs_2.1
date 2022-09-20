@@ -47,7 +47,15 @@ File& operator<<(File& file, Student& student)
 
 	if (file.type == FlType::Binary)
 	{
-		file.fl.write((reinterpret_cast<char*>(&student)), sizeof(Student));
+		String name(student.getName());
+		size_t nameLen = name.getLength();
+		int age = student.getAge();
+		float GPA = student.getGPA();
+
+		file.fl.write(reinterpret_cast<char*>(&nameLen), sizeof(size_t));
+		file.fl.write(reinterpret_cast<char*>(&name), sizeof(name));
+		file.fl.write(reinterpret_cast<char*>(&age), sizeof(int));
+		file.fl.write(reinterpret_cast<char*>(&GPA), sizeof(float)); 
 	}
 
 	if (file.type == FlType::Text)
@@ -64,9 +72,21 @@ File& operator>>(File& file, Student& student)
         if (file.type == FlType::None || !file.fl.is_open()) { return file; }
 
         if (file.type == FlType::Binary)
-        {
-                file.fl.read((reinterpret_cast<char*>(&student)), sizeof(Student));
-        }
+	{
+		size_t nameLen = 0;
+		String name;
+		int age = 0;
+		float GPA = 0.0f;
+
+		file.fl.read(reinterpret_cast<char*>(&nameLen), sizeof(size_t));
+		file.fl.read(reinterpret_cast<char*>(&name), nameLen);
+		file.fl.read(reinterpret_cast<char*>(&age), sizeof(int));
+		file.fl.read(reinterpret_cast<char*>(&GPA), sizeof(float));
+		
+		student.setName(name);
+		student.setAge(age);
+		student.setGPA(GPA);
+	}
 
         return file;
 }
