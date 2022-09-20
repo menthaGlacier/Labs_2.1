@@ -40,20 +40,40 @@ void File::close()
 	fl.close();
 }
 
-File& operator<<(File& file, Student& student)
+File& operator<<(File& file, const String& str)
 {
 	if (file.mode == FlMode::None || file.mode == FlMode::Read) { return file; }
 	if (file.type == FlType::None || !file.fl.is_open()) { return file; }
 
 	if (file.type == FlType::Binary)
 	{
-		String name(student.getName());
-		size_t nameLen = name.getLength();
+		char* string = &str[0];
+		size_t length = str.getLength();
+
+		file.fl.write(reinterpret_cast<char*>(&length), sizeof(size_t));
+		if (length > 0) { file.fl.write(string, length); }
+	}
+	
+	if (file.type == FlType::Text)
+	{
+		file.fl << str; 
+	}
+
+	return file;
+
+}
+
+File& operator<<(File& file, const Student& student)
+{
+	if (file.mode == FlMode::None || file.mode == FlMode::Read) { return file; }
+	if (file.type == FlType::None || !file.fl.is_open()) { return file; }
+
+	if (file.type == FlType::Binary)
+	{
 		int age = student.getAge();
 		float GPA = student.getGPA();
 
-		file.fl.write(reinterpret_cast<char*>(&nameLen), sizeof(size_t));
-		file.fl.write(reinterpret_cast<char*>(&name), sizeof(name));
+		file << student.getName();
 		file.fl.write(reinterpret_cast<char*>(&age), sizeof(int));
 		file.fl.write(reinterpret_cast<char*>(&GPA), sizeof(float)); 
 	}
@@ -66,20 +86,41 @@ File& operator<<(File& file, Student& student)
 	return file;
 }
 
+File& operator>>(File& file, String& str)
+{
+	if (file.mode == FlMode::None || file.mode == FlMode::Write) { return file; }
+	if (file.type == FlType::None || !file.fl.is_open()) { return file; }
+		
+	if (file.type == FlType::Binary)
+	{		
+		char* string = &str[0];
+		size_t length = 0;
+
+		file.fl.read(reinterpret_cast<char*>(&length), sizeof(size_t));
+		if (length > 0)
+	   	{
+			string = new char[length];
+			file.fl.read(string, length);
+	   	}
+		
+		str = String(string, length);	
+	}
+
+	return file;
+}
+
 File& operator>>(File& file, Student& student)
 {
-        if (file.mode == FlMode::None || file.mode == FlMode::Write) { return file; }
-        if (file.type == FlType::None || !file.fl.is_open()) { return file; }
+	if (file.mode == FlMode::None || file.mode == FlMode::Write) { return file; }
+	if (file.type == FlType::None || !file.fl.is_open()) { return file; }
 
-        if (file.type == FlType::Binary)
+	if (file.type == FlType::Binary)
 	{
-		size_t nameLen = 0;
 		String name;
 		int age = 0;
 		float GPA = 0.0f;
-
-		file.fl.read(reinterpret_cast<char*>(&nameLen), sizeof(size_t));
-		file.fl.read(reinterpret_cast<char*>(&name), nameLen);
+		
+		file >> name;
 		file.fl.read(reinterpret_cast<char*>(&age), sizeof(int));
 		file.fl.read(reinterpret_cast<char*>(&GPA), sizeof(float));
 		
@@ -88,5 +129,5 @@ File& operator>>(File& file, Student& student)
 		student.setGPA(GPA);
 	}
 
-        return file;
+	return file;
 }

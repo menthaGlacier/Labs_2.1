@@ -38,7 +38,6 @@ String::~String()
 
 char& String::operator[](size_t index) const
 {
-	if (index >= size) { throw "[ERROR]: Wrong string index"; }
 	return string[index];
 }
 

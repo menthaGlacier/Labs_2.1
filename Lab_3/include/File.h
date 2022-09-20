@@ -29,8 +29,10 @@ public:
 	void open(FlMode mode, FlType type);
 	void close();
 	
-	friend File& operator<<(File& file, Student& student);
+	friend File& operator<<(File& file, const Student& student);
+	friend File& operator<<(File& file, const String& str);
 	friend File& operator>>(File& file, Student& student);
+	friend File& operator>>(File& file, String& str);
 
 private:
 	std::fstream fl;

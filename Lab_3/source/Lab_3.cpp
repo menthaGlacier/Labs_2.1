@@ -46,7 +46,7 @@ int main()
 	result_2++;
 
 	/* Checking results */
-        std::cout << student_1 << "\n";
+    std::cout << student_1 << "\n";
 	std::cout << student_2 << "\n";
 	std::cout << result_1 << "\n";
 	std::cout << result_2 << "\n\n";
@@ -63,7 +63,7 @@ int main()
 	/* Testing reading from a file */
 	fileBin.open(FlMode::Read, FlType::Binary);
 	fileBin >> result_2;
-	std::cout << result_2;
+	std::cout << result_2 << "\n\n";
 
 	return 0;
 }
