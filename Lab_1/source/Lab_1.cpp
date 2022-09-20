@@ -17,10 +17,10 @@ int main()
 	Student result_2 = student_1.addition(student_2);
 
 	/* Testing output */
-	std::cout << student_1 << "\n";
-	std::cout << student_2 << "\n";
-	std::cout << result_1 << "\n";
-	std::cout << result_2 << "\n\n";
+	student_1.print();
+	student_2.print();
+	result_1.print();
+	result_2.print();
 
 	return 0;
 }

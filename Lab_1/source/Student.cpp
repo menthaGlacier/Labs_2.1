@@ -17,12 +17,11 @@ Student Student::addition(const Student& add) const
 		(GPA + add.GPA) / 2.0f);
 }
 
-std::ostream& operator<<(std::ostream& out, const Student& student)
+void Student::print()
 {
-        out << "Name: " << student.name <<
-                " | Age: " << student.age <<
-                " | GPA: " << student.GPA;
-        return out;
+	std::cout << "Name: " << name << " | ";
+	std::cout << "Age : " << age << " | ";
+	std::cout << "GPA: " << GPA << "\n";
 }
 
 String Student::getName() const

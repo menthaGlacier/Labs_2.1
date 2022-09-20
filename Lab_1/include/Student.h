@@ -13,7 +13,8 @@ public:
 	~Student();
 
 	Student addition(const Student& add) const;
-	friend std::ostream& operator<<(std::ostream& out, const Student& student);
+
+	void print();
 
 	String getName() const;
 	void setName(const String& str);
