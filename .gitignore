@@ -8,5 +8,8 @@ Debug
 # Ignore g++ binary
 test
 
+# Ignore output files
+LAB.*
+
 # Temporarily ignore codestyle guide
 codestyle.md
