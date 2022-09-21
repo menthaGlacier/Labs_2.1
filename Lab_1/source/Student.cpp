@@ -17,10 +17,10 @@ Student Student::addition(const Student& add) const
 		(GPA + add.GPA) / 2.0f);
 }
 
-void Student::print()
+void Student::print() const
 {
 	std::cout << "Name: " << name << " | ";
-	std::cout << "Age : " << age << " | ";
+	std::cout << "Age: " << age << " | ";
 	std::cout << "GPA: " << GPA << "\n";
 }
 

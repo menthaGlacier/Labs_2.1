@@ -14,7 +14,7 @@ public:
 
 	Student addition(const Student& add) const;
 
-	void print();
+	void print() const;
 
 	String getName() const;
 	void setName(const String& str);

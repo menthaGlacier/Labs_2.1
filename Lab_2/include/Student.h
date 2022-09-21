@@ -12,8 +12,7 @@ public:
 	Student(const Student&);
 	~Student();
 
-	Student& operator=(const Student&);	
-
+	Student addition(const Student& add) const;
 	Student operator+(const Student&) const;
 	Student operator+(const String&) const;
 	Student operator+(int) const;
@@ -24,13 +23,16 @@ public:
 	friend Student operator-(const Student&, int);
 	friend Student operator-(const Student&, float);
 
+	Student& operator=(const Student&);
+	
 	Student& operator++();
 	Student operator++(int);
 
-	explicit operator String();
-	explicit operator int();
-	explicit operator float();
+	explicit operator String() const;
+	explicit operator int() const;
+	explicit operator float() const;
 
+	void print() const;
 	friend std::ostream& operator<<(std::ostream& out, const Student& student);
 
 	String getName() const;
