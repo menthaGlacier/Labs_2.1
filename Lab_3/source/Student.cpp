@@ -11,13 +11,10 @@ Student::Student(const Student& copy)
 
 Student::~Student() {}
 
-Student& Student::operator=(const Student& student)
+Student Student::addition(const Student& add) const
 {
-	if (this == &student) { return *this; }
-	name = student.name;
-	age = student.age;
-	GPA = student.GPA;
-	return *this;
+	return Student(name + add.name, age + add.age,
+			(GPA + add.GPA) / 2.0f);
 }
 
 Student Student::operator+(const Student& add) const
@@ -73,6 +70,15 @@ Student operator-(const Student& base, float low)
 	return Student(base.name, base.age, base.GPA - low);
 }
 
+Student& Student::operator=(const Student& student)
+{
+	if (this == &student) { return *this; }
+	name = student.name;
+	age = student.age;
+	GPA = student.GPA;
+	return *this;
+}
+
 Student& Student::operator++()
 {	
 	++age;
@@ -86,27 +92,34 @@ Student Student::operator++(int)
 	return temp;
 }
 
-Student::operator String()
+Student::operator String() const
 {
 	return name;
 }
 
-Student::operator int()
+Student::operator int() const
 {
 	return age;
 }
 
-Student::operator float()
+Student::operator float() const
 {
 	return GPA;
 }
 
+void Student::print() const
+{
+	std::cout << "Name: " << name << " | ";
+	std::cout << "Age: " << age << " | ";
+	std::cout << "GPA: " << GPA << "\n";
+}
+
 std::ostream& operator<<(std::ostream& out, const Student& student)
 {
-        out << "Name: " << student.name <<
-                " | Age: " << student.age <<
-                " | GPA: " << student.GPA;
-        return out;
+	out << "Name: " << student.name <<
+	" | Age: " << student.age <<
+    " | GPA: " << student.GPA;
+    return out;
 }
 
 String Student::getName() const
