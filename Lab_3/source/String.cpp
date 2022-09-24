@@ -60,7 +60,7 @@ String& String::operator=(const String& str)
 	size = str.size;
 	if (str.string == nullptr || size == 0) 
 	{
-		string == nullptr;
+		string = nullptr;
 		return *this;
 	}
 
