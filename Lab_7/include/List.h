@@ -2,38 +2,48 @@
 #define TEMPLATE_LIST_H
 
 #include "pch.h"
+#include "ListNode.h"
 
 template < class T >
 class List
 {
 public:
-	List()
-		: prev{ this }, next{ this }, data{} {}
+	List() = delete;
 
-	List(const T& _data)
-		: prev{ this }, next{ this }, data{ _data } {}
-	
+	List(const T& data) : head(nullptr)
+	{
+		head = new ListNode<T> (data);
+	}
+
 	~List()
 	{
-		if (next == nullptr || next == this) { return; }
-		
-		while (next != this)
+		while (head->next != head)
 		{	
-			List* pointer{ next };
+			ListNode<T>* pointer( head );
 
-			next = pointer->next;
-			next->prev = this;
-
-			pointer->next = nullptr;
-			pointer->prev = nullptr;
+			head = head->next;
 
 			delete pointer;
 		}
+		delete head;
+	}
+	
+	List& nextHead()
+	{
+		head = head->next;
+		return *this;
 	}
 
-	List& findNode(int index = 0)
+	List& prevHead()
 	{
-		List* pointer{ this };
+		head = head->prev;
+		return *this;
+	}
+
+	ListNode<T>& operator[](int index)
+	{
+		if (head == head->next) { return *head; }
+		ListNode<T>* pointer( head );
 
 		for ( int i{ 0 }; i != index;)
 		{
@@ -53,11 +63,11 @@ public:
 		return *pointer;
 	}
 
-	List& insertNode(const T& new_data, int index = 0)
+	ListNode<T>& insertNode(const T& new_data, int index)
 	{
-		List* place{ &findNode(index) }, *new_node{ nullptr };
+		ListNode<T> *place( &this->operator[](index) ), *new_node( nullptr );
 		
-		new_node = new List<T> { new_data };
+		new_node = new ListNode<T> ( new_data );
 		
 		new_node->next = place;
 		new_node->prev = place->prev;
@@ -69,35 +79,26 @@ public:
 
 	void print(bool reverse = false)
 	{
-		List* pointer{ this };
+		if (reverse) { prevHead(); }
+		ListNode<T>* pointer ( head );
 
-		std::cout << "[cycle]";
+		if (reverse) { std::cout << "[rcycle]"; }
+		else { std::cout << "[cycle]"; }
 
 		do
 		{
 			std::cout << "->" << pointer->data;
-			pointer = reverse ? pointer->prev : pointer->next;
-		} while (pointer != this);
+			pointer = reverse ?	pointer->prev : pointer->next;
+		} while (pointer != head);
 
-		std::cout << "->[cycle]";
-	}
+		if (reverse) { std::cout << "->[rcycle]\n"; }
+		else { std::cout << "->[cycle]\n"; }
 
-	List& nextNode()
-	{
-		return *next;
-	}
-
-	List& prevNode()
-	{
-		return *prev;
+		if (reverse) { nextHead(); }
 	}
 	
-public:
-	T data;
-
 private:
-	List* prev, *next;
+	ListNode<T>* head;
 };
 
 #endif /* TEMPLATE_LIST_H */
-
