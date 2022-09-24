@@ -29,9 +29,9 @@ String Student::getName() const
 	return name; 
 }
 
-void Student::setName(const String& str)
+void Student::setName(const String& _name)
 {
-	name = str;
+	name = _name;
 }
 
 int Student::getAge() const
@@ -39,9 +39,9 @@ int Student::getAge() const
 	return age;
 }
 
-void Student::setAge(int value)
+void Student::setAge(int _age)
 {
-	age = value;
+	age = _age;
 }
 
 float Student::getGPA() const
@@ -49,7 +49,7 @@ float Student::getGPA() const
 	return GPA;
 }
 
-void Student::setGPA(float value)
+void Student::setGPA(float _GPA)
 {
-	GPA = value;
+	GPA = _GPA;
 }

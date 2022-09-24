@@ -9,21 +9,21 @@ class Student
 public:
 	Student();
 	Student(String _name, int _age, float _GPA);
-	Student(const Student&);
+	Student(const Student& copy);
 	~Student();
 
 	Student addition(const Student& add) const;
-	Student operator+(const Student&) const;
-	Student operator+(const String&) const;
-	Student operator+(int) const;
-	Student operator+(float) const;
+	Student operator+(const Student& add) const;
+	Student operator+(const String& add) const;
+	Student operator+(int add) const;
+	Student operator+(float add) const;
 
-	friend Student operator-(const Student&, const Student&);
-	friend Student operator-(const Student&, const String&);
-	friend Student operator-(const Student&, int);
-	friend Student operator-(const Student&, float);
+	friend Student operator-(const Student& base, const Student& low);
+	friend Student operator-(const Student& base, const String& low);
+	friend Student operator-(const Student& base, int low);
+	friend Student operator-(const Student& base, float low);
 
-	Student& operator=(const Student&);
+	Student& operator=(const Student& student);
 	
 	Student& operator++();
 	Student operator++(int);
@@ -36,13 +36,13 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, const Student& student);
 
 	String getName() const;
-	void setName(const String& str);
+	void setName(const String& _name);
 
 	int getAge() const;
-	void setAge(int value);
+	void setAge(int _age);
 
 	float getGPA() const;
-	void setGPA(float value);
+	void setGPA(float _GPA);
 
 private:
 	String name;

@@ -9,7 +9,7 @@ class Student
 public:
 	Student();
 	Student(String _name, int _age, float _GPA);
-	Student(const Student&);
+	Student(const Student& copy);
 	~Student();
 
 	Student addition(const Student& add) const;
@@ -17,13 +17,13 @@ public:
 	void print() const;
 
 	String getName() const;
-	void setName(const String& str);
+	void setName(const String& _name);
 
 	int getAge() const;
-	void setAge(int value);
+	void setAge(int _age);
 
 	float getGPA() const;
-	void setGPA(float value);
+	void setGPA(float _GPA);
 
 private:
 	String name;
