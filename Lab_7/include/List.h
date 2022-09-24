@@ -12,7 +12,15 @@ public:
 
 	List(const T& data) : head(nullptr)
 	{
-		head = new ListNode<T> (data);
+		try
+		{
+			head = new ListNode<T> (data);
+		}
+		catch(std::bad_alloc& e)
+		{
+			std::cout << "\n\n[ERROR] Allocation failed:" << e.what() << std::endl;
+			exit(-2);
+		}
 	}
 
 	~List()
@@ -67,8 +75,16 @@ public:
 	{
 		ListNode<T> *place( &this->operator[](index) ), *new_node( nullptr );
 		
-		new_node = new ListNode<T> ( new_data );
-		
+		try
+		{
+			new_node = new ListNode<T> ( new_data );
+		}
+		catch(std::bad_alloc& e)
+		{
+			std::cout << "\n\n[ERROR] Allocation failed:" << e.what() << std::endl;
+			exit(-2);
+		}
+
 		new_node->next = place;
 		new_node->prev = place->prev;
 		place->prev->next = new_node;
