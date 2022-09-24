@@ -3,31 +3,52 @@
 
 int main()
 {
-	List<char> charList('S'); // list of chars
-	charList.insertNode('g'); // inserting values to list in different places
-	charList.insertNode('t', 1);
-	charList.insertNode('n', -1);
-	charList.insertNode('r', 2);
-	charList.insertNode('i', -2);
+	/*----Char list----*/
 
-	charList.print(); // normal list print
-	std::cout << '\n';
-	charList.prevNode().print(true); // reversed list print, starting from previous node
-	std::cout << "\n\n";
+	/* Creating list of chars */
+	List<char> charList('a');
+	
+	/* Inserting values to list in different positions */
+	charList.insertNode('b', 0);
+	charList.insertNode('c', 1);
+	charList.insertNode('d', -1);
+	charList.insertNode('e', -2);
+ 
+	/* Normal list printing */
+	charList.print();
 
-	List<int> intList(1); // int list
-	intList.insertNode(2); // inserting values to list
-	intList.nextNode().insertNode(3); // we can change node, from where we count index
+	/* Reversed list printing */
+	charList.print(true);
+	std::cout << "\n";
+
+	/*----Int list----*/
+
+	/* Creating list of integers */
+	List<int> intList(1);
+
+	/* Inserting value to list */
+	intList.insertNode(2, 0);
+
+	/* Switching head of list to next element */
+	intList.nextHead();
+
+	/* Inserting values to list in different positions */
+	intList.insertNode(3, 0);
 	intList.insertNode(4, -1);
+	
+	/*Swtiching head of list to previous element */
+	intList.prevHead();
 
+	/* Normal list printing */
 	intList.print();
-	std::cout <<  '\n';
-	intList.prevNode().print(true);
-	std::cout << "\n\n";
+
+	/* Reversed list printing */
+	intList.print(true);
+	std::cout << "\n";
 
 	/* Searching for values with index i in list  */
-	std::cout << "Int list[17]: " << intList.findNode(17).data <<
-		"\nChar list[13]: " << charList.findNode(13).data << std::endl;
+	std::cout << "Int list[17]: " << intList[17].data <<
+		"\nChar list[13]: " << charList[13].data << std::endl;
 
 	return 0;
 }
