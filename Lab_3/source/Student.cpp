@@ -82,8 +82,8 @@ void Student::print() const
 std::ostream& operator<<(std::ostream& out, const Student& student)
 {
 	out << "Name: " << student.name <<
-	" | Age: " << student.age <<
-    " | GPA: " << student.GPA;
+	" | " << "Age: " << student.age <<
+    " | " << "GPA: " << student.GPA;
     return out;
 }
 
