@@ -23,5 +23,6 @@ int main()
 	analyze.printData();
 	std::cout << "\n";
 
+	//analyze.run();
 	return 0;
 }

@@ -110,6 +110,23 @@ public:
 		}
 	}
 
+	void run(size_t repeats, size_t data_size) override
+	{
+		if (!(repeats && data_size)) { return; }
+
+		for (size_t r = 0; r < repeats; r++)
+		{
+			//TODO time checking
+			generate(data_size);
+			T new_value = rand();
+			add(new_value);
+			erase(0);
+			find(new_value);
+			sort();
+			clear();
+		}
+	}
+
 public:
 	std::queue<T> data;
 };
