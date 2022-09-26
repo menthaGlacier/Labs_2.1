@@ -10,7 +10,7 @@ public:
 	Student();
 	Student(String _name, int _age, float _GPA);
 	Student(const Student& copy);
-	~Student();
+	virtual ~Student();
 
 	Student addition(const Student& add) const;
 	Student operator+(const Student& add) const;
