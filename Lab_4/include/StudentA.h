@@ -19,7 +19,7 @@ public:
 	explicit operator bool() const;
 	explicit operator char() const;
 
-	void print() const;
+	void print() const override;
 	friend std::ostream& operator<<(std::ostream& out, const StudentA& student);
 
 	void setSdABool(bool _sdABool);

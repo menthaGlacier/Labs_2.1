@@ -26,7 +26,7 @@ public:
 	virtual explicit operator int() const;
 	explicit operator float() const;
 
-	void print() const;
+	virtual void print() const;
 	friend std::ostream& operator<<(std::ostream& out, const Student& student);
 
 	String getName() const;

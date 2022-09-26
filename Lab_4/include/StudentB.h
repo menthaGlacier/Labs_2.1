@@ -16,10 +16,10 @@ public:
 	friend StudentB operator-(const StudentB& base, const StudentB& low);
 	StudentB& operator=(const StudentB& student);
 
-	explicit operator int() const;
+	explicit operator int() const override;
 	explicit operator char() const;
 
-	void print() const;
+	void print() const override;
 	friend std::ostream& operator<<(std::ostream& out, const StudentB& student);
 
 	void setSdBInt(int _sdBInt);
