@@ -24,6 +24,40 @@ StudentA StudentA::operator+(const StudentA& add) const
 		(GPA + add.GPA) / 2.0f, sdABool + add.sdABool, sdAChar + add.sdAChar);
 }
 
+StudentA operator-(const StudentA& base, const StudentA& low)
+{
+	if ((base.GPA - low.GPA) < 0)
+    {
+		return StudentA(base.name - low.name, base.age - low.age,
+			0.0f, base.sdABool - low.sdABool, base.sdAChar - low.sdAChar);
+	}
+
+	return StudentA(base.name - low.name, base.age - low.age,
+		base.GPA - low.GPA, base.sdABool - low.sdABool,
+		base.sdAChar - low.sdAChar);
+}
+
+StudentA& StudentA::operator=(const StudentA& student)
+{
+	if (this == &student) { return *this; }
+	name = student.name;
+	age = student.age;
+	GPA = student.GPA;
+	sdABool = student.sdABool;
+	sdAChar = student.sdAChar;
+	return *this;
+}
+
+StudentA::operator bool() const
+{
+	return sdABool;
+}
+
+StudentA::operator char() const
+{
+	return sdAChar;
+}
+
 void StudentA::print() const
 {
 	std::cout << "Name: " << name << " | ";

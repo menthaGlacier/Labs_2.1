@@ -13,6 +13,11 @@ public:
 
 	StudentA addition(const StudentA& add) const;
 	StudentA operator+(const StudentA& add) const;
+	friend StudentA operator-(const StudentA& base, const StudentA& low);
+	StudentA& operator=(const StudentA& student);
+
+	explicit operator bool() const;
+	explicit operator char() const;
 
 	void print() const;
 	friend std::ostream& operator<<(std::ostream& out, const StudentA& student);
