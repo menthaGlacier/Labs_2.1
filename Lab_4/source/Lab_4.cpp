@@ -60,14 +60,16 @@ int main()
 	/* Testing derived class StudentA */
 	StudentA studentA_1;
 	StudentA studentA_2("Anton", 22, 4.2f, true, 'Q');
-	StudentA resultA(studentA_2);
+	StudentA resultA_1(studentA_2);
+	StudentA resultA_2 = studentA_2 - StudentA("Ben", 3, 5.0f, true, '0');
 
 	studentA_1.print();
-	std::cout << studentA_2 << "\n" << resultA << "\n\n";
+	studentA_2.print();
+	std::cout << resultA_1 << "\n" << resultA_2 << "\n\n";
 
 	/* Testing derived class StudentB */
 	StudentB studentB_1;
-	StudentB studentB_2("Yar", 33, 3.9f, false, '+');
+	StudentB studentB_2("Yar", 33, 3.9f, 77, '+');
 	StudentB resultB_1(studentB_2);
 	StudentB resultB_2 = studentB_2 + resultB_1;
 
@@ -77,6 +79,7 @@ int main()
 	studentB_1.print();
 	studentB_2.print();
 	std::cout << resultB_1 << "\n" << resultB_2 << "\n\n";
+	std::cout << "Cast to int: " << static_cast<int>(studentB_2) << "\n";
 	
 	return 0;
 }

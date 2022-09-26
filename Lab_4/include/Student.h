@@ -23,7 +23,7 @@ public:
 	Student operator++(int);
 
 	explicit operator String() const;
-	explicit operator int() const;
+	virtual explicit operator int() const;
 	explicit operator float() const;
 
 	void print() const;
