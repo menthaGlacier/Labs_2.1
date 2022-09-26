@@ -1,5 +1,7 @@
 #include "../include/pch.h"
 #include "../include/Student.h"
+#include "../include/StudentA.h"
+#include "../include/StudentB.h"
 #include "../include/File.h"
 
 int main()
@@ -22,16 +24,6 @@ int main()
 	std::cout << student_2 << "\n";
 	std::cout << result_1 << "\n";
 	std::cout << result_2 << "\n\n";
-
-	/* Testing addition */
-	student_1 = student_1 + "os";
-	student_1 = student_1 + 5;
-	student_1 = student_1 + 0.3f;
-	
-	/* Testing subtraction */
-	result_1 = result_1 - "ok"; 
-	result_1 = result_1 - 7;
-	result_1 = result_1 - 0.2f;
 
 	/* Testing casting */
 	std::cout << "Cast to String: " << static_cast<String>(student_1) << "\n";
@@ -65,5 +57,26 @@ int main()
 	fileBin >> result_2;
 	std::cout << result_2 << "\n\n";
 
+	/* Testing derived class StudentA */
+	StudentA studentA_1;
+	StudentA studentA_2("Anton", 22, 4.2f, true, 'Q');
+	StudentA resultA(studentA_2);
+
+	studentA_1.print();
+	std::cout << studentA_2 << "\n" << resultA << "\n\n";
+
+	/* Testing derived class StudentB */
+	StudentB studentB_1;
+	StudentB studentB_2("Yar", 33, 3.9f, false, '+');
+	StudentB resultB_1(studentB_2);
+	StudentB resultB_2 = studentB_2 + resultB_1;
+
+	studentB_1.setName("Test");
+	studentB_1.setSdBChar('#');
+
+	studentB_1.print();
+	studentB_2.print();
+	std::cout << resultB_1 << "\n" << resultB_2 << "\n\n";
+	
 	return 0;
 }

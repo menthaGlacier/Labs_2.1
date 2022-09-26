@@ -5,7 +5,27 @@
 
 class StudentB : public Student
 {
+public:
+	StudentB();
+	StudentB(String _name, int _age, float _GPA, int _sdBInt, char _sdBChar);
+	StudentB(const StudentB& copy);
+	~StudentB();
 
+	StudentB addition(const StudentB& add) const;
+	StudentB operator+(const StudentB& add) const;
+
+	void print() const;
+	friend std::ostream& operator<<(std::ostream& out, const StudentB& student);
+
+	void setSdBInt(int _sdBInt);
+	int getSdBInt() const;
+
+	void setSdBChar(char _sdBChar);
+	char getSdBChar() const;
+
+private:
+	int sdBInt;
+	char sdBChar;
 };
 
 #endif /* STUDENT_B_H */

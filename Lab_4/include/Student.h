@@ -14,14 +14,8 @@ public:
 
 	Student addition(const Student& add) const;
 	Student operator+(const Student& add) const;
-	Student operator+(const String& add) const;
-	Student operator+(int add) const;
-	Student operator+(float add) const;
 
 	friend Student operator-(const Student& base, const Student& low);
-	friend Student operator-(const Student& base, const String& low);
-	friend Student operator-(const Student& base, int low);
-	friend Student operator-(const Student& base, float low);
 
 	Student& operator=(const Student& student);
 	
@@ -44,7 +38,7 @@ public:
 	float getGPA() const;
 	void setGPA(float _GPA);
 
-private:
+protected:
 	String name;
 	int age;
 	float GPA;
