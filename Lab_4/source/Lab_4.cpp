@@ -80,6 +80,10 @@ int main()
 	studentB_2.print();
 	std::cout << resultB_1 << "\n" << resultB_2 << "\n\n";
 	std::cout << "Cast to int: " << static_cast<int>(studentB_2) << "\n";
-	
+
+	/* Testing virtual method */
+	Student* studPtr = &studentB_1;
+	studPtr->print();
+
 	return 0;
 }
