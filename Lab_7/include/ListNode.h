@@ -13,7 +13,7 @@ public:
 
 	~ListNode()
 	{
-		if (next != this )
+		if (next != this)
 	   	{
 		   	next->prev = prev;
 			prev->next = next;

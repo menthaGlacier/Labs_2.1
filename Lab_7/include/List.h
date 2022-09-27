@@ -4,7 +4,7 @@
 #include "pch.h"
 #include "ListNode.h"
 
-template < class T >
+template <class T>
 class List
 {
 public:
@@ -18,8 +18,9 @@ public:
 		}
 		catch(std::bad_alloc& e)
 		{
-			std::cout << "\n\n[ERROR] Allocation failed:" << e.what() << std::endl;
-			exit(-2);
+			std::cout << "\n\n[ERROR] Allocation failed:"
+				<< e.what() << std::endl;
+			exit(2);
 		}
 	}
 
@@ -27,12 +28,13 @@ public:
 	{
 		while (head->next != head)
 		{	
-			ListNode<T>* pointer( head );
+			ListNode<T>* pointer(head);
 
 			head = head->next;
 
 			delete pointer;
 		}
+
 		delete head;
 	}
 	
@@ -51,9 +53,9 @@ public:
 	ListNode<T>& operator[](int index)
 	{
 		if (head == head->next) { return *head; }
-		ListNode<T>* pointer( head );
+		ListNode<T>* pointer(head);
 
-		for ( int i{ 0 }; i != index;)
+		for (int i = 0; i != index;)
 		{
 			if (i < index)
 			{
@@ -73,16 +75,17 @@ public:
 
 	ListNode<T>& insertNode(const T& new_data, int index)
 	{
-		ListNode<T> *place( &this->operator[](index) ), *new_node( nullptr );
+		ListNode<T> *place(&this->operator[](index)), *new_node(nullptr);
 		
 		try
 		{
-			new_node = new ListNode<T> ( new_data );
+			new_node = new ListNode<T> (new_data);
 		}
 		catch(std::bad_alloc& e)
 		{
-			std::cout << "\n\n[ERROR] Allocation failed:" << e.what() << std::endl;
-			exit(-2);
+			std::cout << "\n\n[ERROR] Allocation failed:"
+				<< e.what() << std::endl;
+			exit(2);
 		}
 
 		new_node->next = place;
@@ -96,7 +99,7 @@ public:
 	void print(bool reverse = false)
 	{
 		if (reverse) { prevHead(); }
-		ListNode<T>* pointer ( head );
+		ListNode<T>* pointer (head);
 
 		if (reverse) { std::cout << "[rcycle]"; }
 		else { std::cout << "[cycle]"; }
