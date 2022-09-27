@@ -2,7 +2,6 @@
 #define ANALYZER_H
 
 #include "pch.h"
-#include <iomanip>
 
 template<class T>
 class Analyzer
