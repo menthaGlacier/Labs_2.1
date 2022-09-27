@@ -1,6 +1,7 @@
 #ifndef STUDENT_B_H
 #define STUDENT_B_H
 
+#include "pch.h"
 #include "Student.h"
 
 class StudentB : public Student
