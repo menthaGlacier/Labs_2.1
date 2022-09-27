@@ -9,62 +9,88 @@ template<class T>
 class QueueAnalyzer : public Analyzer<T>
 {
 public:
+	using Analyzer<T>::timerStart;
+	using Analyzer<T>::timerStop;
+
 	void generate(size_t amount) override
 	{
 		clear();
-		
+		timerStart();
 		for (size_t i = 0; i < amount; i++)
 		{
 			data.push(rand());
 		}
+		timerStop();
 	}
 
 	void add(const T& element) override
 	{
+		timerStart();
 		data.push(element);
+		timerStop();
 	}
 
 	void clear() override
 	{
+		timerStart();
 		while(!data.empty()) 
 		{
 			data.pop();
 		}
+		timerStop();
 	}
 
 	void erase(size_t index) override
 	{
+		timerStart();
 		size_t size = data.size();
-		if (index >= size) { return; }
-
-		for (size_t i = 0; i < size; i++)
+		if (index < size) 
 		{
-			if (i != index) { data.push(data.front()); }
-			data.pop();
+			for (size_t i = 0; i < size; i++)
+			{
+				if (i != index) { data.push(data.front()); }
+				data.pop();
+			}
 		}
+		timerStop();
 	}
 
 	int find(const T& value) override
 	{
-		if (data.empty()) { return -1;}
+		timerStart();
+		if (data.empty()) 
+		{
+			timerStop();
+		   	return -1;
+		}
 		std::queue<T> copy(data);
 
 		size_t size = copy.size();
 
 		for (size_t i = 0; i < size; i++)
 		{
-			if (copy.front() == value) { return i; }
+			if (copy.front() == value) 
+			{
+				timerStop();
+			   	return i;
+		   	}
 			copy.pop();
 		}
 
+		timerStop();
 		return -1;
 	}
 	
 	void sort() override
 	{
+		timerStart();
 		size_t size = data.size();
 
-		if (size < 2) { return; }
+		if (size < 2) 
+		{
+			timerStop();
+		   	return;
+	   	}
 
 		T* data_array = new T[size];
 
@@ -98,6 +124,7 @@ public:
 		}
 
 		delete[] data_array;
+		timerStop();
 	}
 
 	void printData() override
@@ -109,24 +136,6 @@ public:
 			copy.pop();
 		}
 	}
-
-	void run(size_t repeats, size_t data_size) override
-	{
-		if (!(repeats && data_size)) { return; }
-
-		for (size_t r = 0; r < repeats; r++)
-		{
-			//TODO time checking
-			generate(data_size);
-			T new_value = rand();
-			add(new_value);
-			erase(0);
-			find(new_value);
-			sort();
-			clear();
-		}
-	}
-
 public:
 	std::queue<T> data;
 };

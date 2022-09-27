@@ -1,28 +1,14 @@
-#include <ctime>
 #include "../include/QueueAnalyzer.h"
+#include "../include/SetAnalyzer.h"
 
 int main()
 {
-	QueueAnalyzer<int> analyze;
-	analyze.generate(10);
+	QueueAnalyzer<int> q_analyze;
 
-	analyze.add(12);
-	analyze.erase(0);
+	q_analyze.run(10, 4000);
 
-	std::cout << "Value 12 : [" << analyze.find(12) << "]\n";
+	SetAnalyzer<int> s_analyze;
 
-	analyze.printData();
-	std::cout << "\n";
-
-	analyze.sort();
-
-	analyze.printData();
-	std::cout << "\n";
-
-	analyze.clear();
-	analyze.printData();
-	std::cout << "\n";
-
-	//analyze.run();
+	s_analyze.run(10, 4000);
 	return 0;
 }
