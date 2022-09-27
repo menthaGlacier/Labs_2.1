@@ -9,12 +9,8 @@ template<class T>
 class QueueAnalyzer : public Analyzer<T>
 {
 public:
-	using Analyzer<T>::getLastTime;
 	using Analyzer<T>::timerStart;
 	using Analyzer<T>::timerStop;
-	using Analyzer<T>::calculateTimeResult;
-
-	typedef typename Analyzer<T>::TimeResults TimeResults;
 
 	void generate(size_t amount) override
 	{
@@ -48,16 +44,13 @@ public:
 	{
 		timerStart();
 		size_t size = data.size();
-		if (index >= size) 
+		if (index < size) 
 		{
-			timerStop();
-		   	return; 
-		}
-
-		for (size_t i = 0; i < size; i++)
-		{
-			if (i != index) { data.push(data.front()); }
-			data.pop();
+			for (size_t i = 0; i < size; i++)
+			{
+				if (i != index) { data.push(data.front()); }
+				data.pop();
+			}
 		}
 		timerStop();
 	}
@@ -142,83 +135,6 @@ public:
 			std::cout << "<-" << copy.front();
 			copy.pop();
 		}
-	}
-
-	void run(size_t repeats, size_t data_size) override
-	{
-		if (!(repeats && data_size)) { return; }
-
-		TimeResults gen_TR, add_TR, erase_TR, find_TR, sort_TR, clear_TR;
-
-		for (size_t r = 0; r < repeats; r++)
-		{
-			std::cout << "\nIteration " << r << std::flush;
-			generate(data_size);
-			calculateTimeResult(gen_TR, getLastTime(), r);
-			std::cout << " generated" << std::flush;
-
-			T new_value = rand();
-			add(new_value);
-			calculateTimeResult(add_TR, getLastTime(), r);
-			std::cout << ", added value" << std::flush;
-
-			erase(0);
-			calculateTimeResult(erase_TR, getLastTime(), r);
-			std::cout << ", erased value" << std::flush;
-
-			find(new_value);
-			calculateTimeResult(find_TR, getLastTime(), r);
-			std::cout << ", found value" << std::flush;
-
-			sort();
-			calculateTimeResult(sort_TR, getLastTime(), r);
-			std::cout << ", sorted" << std::flush;
-
-			clear();
-			calculateTimeResult(clear_TR, getLastTime(), r);
-			std::cout << ", cleared" << std::endl;
-		}
-		
-		std::cout.setf(std::ios::fixed);
-		std::cout.precision(6);
-
-		std::cout << 
-		"\n\n----------Analyze results----------\n"
-
-		"Repeats: " << repeats << " | "
-		"N: " << data_size <<
-
-		"\nGenerate:\n" 
-		"\tMIN: " << gen_TR.min << " s | "
-		"MAX: " << gen_TR.max << " s | "
-		"Average: " << gen_TR.mean << " s"
-		
-		"\nAdd:\n"
-		"\tMIN: " << add_TR.min << " s | "
-		"MAX: " << add_TR.max << " s | "
-		"Average: " << add_TR.mean << " s"
-
-		"\nErase:\n"
-		"\tMIN: " << erase_TR.min << " s | "
-		"MAX: " << erase_TR.max << " s | "
-		"Average: " << erase_TR.mean << " s"
-
-		"\nFind:\n"
-		"\tMIN: " << find_TR.min << " s | "
-		"MAX: " << find_TR.max << " s | "
-		"Average: " << find_TR.mean << " s"
-
-		"\nSort:\n"
-		"\tMIN: " << sort_TR.min << " s | "
-		"MAX: " << sort_TR.max << " s | "
-		"Average: " << sort_TR.mean << " s"
-
-		"\nClear:\n"
-		"\tMIN: " << clear_TR.min << " s | "
-		"MAX: " << clear_TR.max << " s | "
-		"Average: " << clear_TR.mean << " s"
-		
-		<< std::endl;
 	}
 public:
 	std::queue<T> data;
