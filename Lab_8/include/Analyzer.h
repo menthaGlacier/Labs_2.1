@@ -2,6 +2,7 @@
 #define ANALYZER_H
 
 #include "pch.h"
+#include <iomanip>
 
 template<class T>
 class Analyzer
@@ -25,71 +26,99 @@ public:
 
 		for (size_t r = 0; r < repeats; r++)
 		{
-			std::cout << "\nIteration " << r << std::flush;
-			generate(data_size);
-			calculateTimeResult(gen_TR, getLastTime(), r);
-			std::cout << " generated" << std::flush;
+			if (SHOW_TRACE)
+			{
+				std::cout << "\nIteration " << r << std::flush;
+				generate(data_size);
+				calculateTimeResult(gen_TR, getLastTime(), r);
+				std::cout << " generated" << std::flush;
 
-			T new_value = rand();
-			add(new_value);
-			calculateTimeResult(add_TR, getLastTime(), r);
-			std::cout << ", added value" << std::flush;
+				T new_value = rand();
+				add(new_value);
+				calculateTimeResult(add_TR, getLastTime(), r);
+				std::cout << ", added value" << std::flush;
 
-			erase(0);
-			calculateTimeResult(erase_TR, getLastTime(), r);
-			std::cout << ", erased value" << std::flush;
+				erase(0);
+				calculateTimeResult(erase_TR, getLastTime(), r);
+				std::cout << ", erased value" << std::flush;
 
-			find(new_value);
-			calculateTimeResult(find_TR, getLastTime(), r);
-			std::cout << ", found value" << std::flush;
+				find(new_value);
+				calculateTimeResult(find_TR, getLastTime(), r);
+				std::cout << ", found value" << std::flush;
 
-			sort();
-			calculateTimeResult(sort_TR, getLastTime(), r);
-			std::cout << ", sorted" << std::flush;
+				sort();
+				calculateTimeResult(sort_TR, getLastTime(), r);
+				std::cout << ", sorted" << std::flush;
 
-			clear();
-			calculateTimeResult(clear_TR, getLastTime(), r);
-			std::cout << ", cleared" << std::endl;
+				clear();
+				calculateTimeResult(clear_TR, getLastTime(), r);
+				std::cout << ", cleared" << std::endl;
+			}
+			else
+			{
+				generate(data_size);
+				calculateTimeResult(gen_TR, getLastTime(), r);
+
+				T new_value = rand();
+				add(new_value);
+				calculateTimeResult(add_TR, getLastTime(), r);
+
+				erase(0);
+				calculateTimeResult(erase_TR, getLastTime(), r);
+
+				find(new_value);
+				calculateTimeResult(find_TR, getLastTime(), r);
+
+				sort();
+				calculateTimeResult(sort_TR, getLastTime(), r);
+
+				clear();
+				calculateTimeResult(clear_TR, getLastTime(), r);
+			}
 		}
 
 		std::cout.setf(std::ios::fixed);
 		std::cout.precision(6);
 
-		std::cout <<
-		"\n\n----------Analyze results----------\n"
+		std::cout << "\n\n"
+		"+--------------------Analyze results--------------------+" "\n"
 
-		"Repeats: " << repeats << " | "
-		"N: " << data_size <<
+		"| " "Repeats: " << std::left << std::setw(16) << repeats << " | "
+		"N: " << std::left << std::setw(23) << data_size << "|\n"
+		"+-------------+-------------+-------------+-------------+" "\n"
+		"| Operation   | Minimum, s  | Maximum, s  | Average, s  |" "\n"
+		"+-------------+-------------+-------------+-------------+" "\n"
 
-		"\nGenerate:\n"
-		"\tMIN: " << gen_TR.min << " s | "
-		"MAX: " << gen_TR.max << " s | "
-		"Average: " << gen_TR.mean << " s"
+		"| Generate    | " << 
+		std::left << std::setw(12) << gen_TR.min << "| " <<
+		std::left << std::setw(12) << gen_TR.max << "| " <<
+		std::left << std::setw(12) << gen_TR.mean << "|\n"
 
-		"\nAdd:\n"
-		"\tMIN: " << add_TR.min << " s | "
-		"MAX: " << add_TR.max << " s | "
-		"Average: " << add_TR.mean << " s"
+		"| Add         | " <<
+		std::left << std::setw(12) << add_TR.min << "| " <<
+		std::left << std::setw(12) << add_TR.max << "| " <<
+		std::left << std::setw(12) << add_TR.mean << "|\n" <<
 
-		"\nErase:\n"
-		"\tMIN: " << erase_TR.min << " s | "
-		"MAX: " << erase_TR.max << " s | "
-		"Average: " << erase_TR.mean << " s"
+		"| Erase       | " <<
+		std::left << std::setw(12) << erase_TR.min << "| " <<
+		std::left << std::setw(12) << erase_TR.max << "| " <<
+		std::left << std::setw(12) << erase_TR.mean << "|\n"
 
-		"\nFind:\n"
-		"\tMIN: " << find_TR.min << " s | "
-		"MAX: " << find_TR.max << " s | "
-		"Average: " << find_TR.mean << " s"
+		"| Find        | " <<
+		std::left << std::setw(12) << find_TR.min << "| " <<
+		std::left << std::setw(12) << find_TR.max << "| " <<
+		std::left << std::setw(12) << find_TR.mean << "|\n"
 
-		"\nSort:\n"
-		"\tMIN: " << sort_TR.min << " s | "
-		"MAX: " << sort_TR.max << " s | "
-		"Average: " << sort_TR.mean << " s"
+		"| Sort        | " <<
+		std::left << std::setw(12) << sort_TR.min << "| " <<
+		std::left << std::setw(12) << sort_TR.max << "| " <<
+		std::left << std::setw(12) << sort_TR.mean << "|\n"
 
-		"\nClear:\n"
-		"\tMIN: " << clear_TR.min << " s | "
-		"MAX: " << clear_TR.max << " s | "
-		"Average: " << clear_TR.mean << " s"
+		"| Clear       | " <<
+		std::left << std::setw(12) << clear_TR.min << "| " <<
+		std::left << std::setw(12) << clear_TR.max << "| " <<
+		std::left << std::setw(12) << clear_TR.mean << "|\n"
+		"+-------------+-------------+-------------+-------------+" "\n"
 
 		<< std::endl;
 	}
