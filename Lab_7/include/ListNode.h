@@ -20,6 +20,7 @@ public:
 	   	}
 	}
 
+	/* Unused **********
 	ListNode& nextNode()
 	{
 		return *next;
@@ -29,7 +30,8 @@ public:
 	{
 		return *prev;
 	}
-	
+	*******************/
+
 	template <class L>
 	friend class List;
 
