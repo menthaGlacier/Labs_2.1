@@ -1,7 +1,7 @@
 #include "../include/File.h"
 
 File::File()
-	: fl(nullptr), mode(FlMode::None), type(FlType::None) {}
+	: fl(), mode(FlMode::None), type(FlType::None) {}
 
 File::~File()
 {
