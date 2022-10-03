@@ -3,6 +3,8 @@
 
 #include "pch.h"
 
+extern bool SHOW_TRACE;
+
 template<class T>
 class Analyzer
 {
@@ -53,6 +55,7 @@ public:
 				calculateTimeResult(clear_TR, getLastTime(), r);
 				std::cout << ", cleared" << std::endl;
 			}
+
 			else
 			{
 				generate(data_size);
