@@ -4,10 +4,10 @@ Student::Student()
 	: name(), age(0), GPA(0.0f) {}
 
 Student::Student(String _name, int _age, float _GPA)
-	: name(_name), age(_age), GPA(_GPA) {}
+	: name(_name), age(_age), GPA(_GPA), next(nullptr) {}
 
 Student::Student(const Student& copy)
-	: name(copy.name), age(copy.age), GPA(copy.GPA) {}
+	: name(copy.name), age(copy.age), GPA(copy.GPA), next(nullptr) {}
 
 Student::~Student() {}
 

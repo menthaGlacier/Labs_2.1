@@ -42,6 +42,10 @@ protected:
 	String name;
 	int age;
 	float GPA;
+
+private:
+	friend class List;
+	Student* next;
 };
 
 #endif /* STUDENT_H */
