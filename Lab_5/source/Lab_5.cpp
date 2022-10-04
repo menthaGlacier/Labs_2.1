@@ -3,6 +3,7 @@
 #include "../include/StudentA.h"
 #include "../include/StudentB.h"
 #include "../include/File.h"
+#include "../include/List.h"
 
 int main()
 {
@@ -84,6 +85,13 @@ int main()
 	/* Testing virtual method */
 	Student* studPtr = &studentB_1;
 	studPtr->print();
+
+	/* Testing list */
+	List list_1(student_1);
+	list_1.insert(studentB_1);
+	list_1.insert(studentA_2);
+
+	list_1.output();
 
 	return 0;
 }

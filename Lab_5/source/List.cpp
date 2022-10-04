@@ -118,12 +118,15 @@ Student* List::find(size_t key) const
 
 void List::output() const
 {
+	std::cout << "\nLIST:" << "\n";
+
 	Student* tail = head;
-	while (tail->next)
+	while (tail)
 	{
-		tail->print();
-		std::cout << "->";
+		std::cout << *tail;
+		tail = tail->next;
+		std::cout << " TO" << "\n";
 	}
 
-	std::cout << "0" << "\n";
+	std::cout << "END OF THE LIST" << "\n";
 }
