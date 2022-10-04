@@ -17,8 +17,8 @@ List::~List()
 	while (head)
 	{
 		head->next = nullptr;
-		head = tail;
 		tail = head->next;
+		head = tail;
 	}
 }
 
