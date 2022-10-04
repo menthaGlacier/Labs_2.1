@@ -42,6 +42,7 @@ size_t List::getSize() const
 
 void List::insert(Student& newStudent)
 {
+	++listSize;
 	newStudent.next = nullptr;
 	if (!head)
 	{
@@ -68,6 +69,7 @@ void List::insert(Student& newStudent, size_t key)
 
 	newStudent.next = tail->next;
 	tail->next = &newStudent;
+	++listSize;
 }
 
 void List::remove()
@@ -75,7 +77,8 @@ void List::remove()
 	if (!head) { return; }
 	if (listSize == 1)
 	{
-		head->next = nullptr;
+		head = nullptr;
+		--listSize;
 		return;
 	}
 
@@ -83,6 +86,7 @@ void List::remove()
 	while (tail->next->next) { tail = tail->next; }
 	
 	tail->next = nullptr;
+	--listSize;
 }
 
 void List::remove(size_t key)
@@ -92,6 +96,7 @@ void List::remove(size_t key)
 	if (listSize == 1 || key == 0)
 	{
 		head = head->next; 
+		--listSize;
 		return;
 	}
 
@@ -104,15 +109,19 @@ void List::remove(size_t key)
 	temp = tail->next;
 	tail->next = temp->next;
 	temp->next = nullptr;
+	--listSize;
 }
 
 Student* List::find(size_t key) const
 {
-	if (key > listSize) { return nullptr; }
+	if (key >= listSize) { return nullptr; }
 
 	Student* tail = head;
-	size_t currElem = 0;
-	while (currElem != key) { tail = tail->next; }
+	for (size_t currElem = 0; currElem < key; currElem++)
+	{
+		tail = tail->next;
+	}
+	
 	return tail;
 }
 
