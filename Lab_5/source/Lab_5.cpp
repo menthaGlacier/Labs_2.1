@@ -98,6 +98,7 @@ int main()
 	std::cout << "\n";
 
 	list_1.remove();
+	list_1.remove(1);
 	list_1.output();
 
 	std::cout << "\n";

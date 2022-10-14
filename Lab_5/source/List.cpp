@@ -134,12 +134,20 @@ void List::remove()
 
 void List::remove(size_t key)
 {
-	if (key > listSize || key < 0) { return; }
 	if (!listSize) { return; }
+	if (key > listSize || key < 1) { return; }
 
 	if (listSize == 1)
 	{
-		head = *(head.next); 
+		listSize--;
+		return;
+	}
+
+	if (key == 1)
+	{
+		Student* temp = head.next;
+		head.next = head.next->next;
+		head = *(temp);
 		listSize--;
 		return;
 	}
