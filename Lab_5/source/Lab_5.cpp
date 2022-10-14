@@ -89,32 +89,20 @@ int main()
 
 	/* Testing list */
 	List list_1(student_1);
-
+	list_1.insert(studentA_2);
 	list_1.insert(studentB_1);
-	list_1.insert(studentA_2, 1);
-	
-	Student* found = list_1.find(1);
-	if (found)
-	{
-		found->print();
-		std::cout << "\n";
-	}
-	else { std::cout << "Didn't found\n"; }
-
-	found = list_1.find(1000);
-	if (found)
-	{
-		found->print();
-		std::cout << "\n";
-	}
-	else { std::cout << "Didn't found\n"; }
-
+	list_1.insert(student_1);
+	list_1.insert(studentB_2);
 	list_1.output();
-	
-	list_1.remove(1);
+
+	std::cout << "\n";
+
 	list_1.remove();
-
 	list_1.output();
+
+	std::cout << "\n";
+
+	std::cout << *(list_1.find(2));
 
 	return 0;
 }

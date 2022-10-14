@@ -4,8 +4,8 @@ StudentA::StudentA()
 	: Student(), sdABool(false), sdAChar('\0') {}
 
 StudentA::StudentA(String _name, int _age, float _GPA, bool _sdABool,
-	char _sdAChar) : Student(_name, _age, _GPA), sdABool(_sdABool),
-	sdAChar(_sdAChar) {}
+	char _sdAChar)
+		: Student(_name, _age, _GPA), sdABool(_sdABool), sdAChar(_sdAChar) {}
 
 StudentA::StudentA(const StudentA& copy)
 	: Student(copy), sdABool(copy.sdABool), sdAChar(copy.sdAChar) {}

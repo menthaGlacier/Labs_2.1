@@ -1,24 +1,24 @@
 #include "../include/List.h"
 
 List::List()
-	: head(nullptr), listSize(0) {}
+	: head(), listSize(0) {}
 
-List::List(Student& _head)
-	: head(&_head), listSize(1)
+List::List(const Student& _head)
+	: head(_head), listSize(1)
 {
-	head->next = nullptr;
+	head.next = nullptr;
 }
 
 List::~List()
 {
-	if (!head) { return; }	
+	if (!listSize) { return; }	
 	
-	Student* tail = head->next;
-	while (head)
+	Student* tail = head.next;
+	while (tail)
 	{
-		head->next = nullptr;
-		tail = head->next;
-		head = tail;
+		Student* temp = tail->next;
+		delete tail;
+		tail = temp;
 	}
 }
 
@@ -29,113 +29,159 @@ bool List::isEmpty() const
 
 size_t List::getSize() const
 {
-	Student* tail = head;
-	size_t size = 1;
-	while (tail->next)
-	{
-		size++;
-		tail = tail->next;
-	}
-
-	return size;
+	return listSize;
 }
 
-void List::insert(Student& newStudent)
+void List::insert(const Student& data)
 {
-	++listSize;
-	newStudent.next = nullptr;
-	if (!head)
+	if (!listSize)
 	{
-		head = &newStudent;
+		head = data;
+		head.next = nullptr;
+		listSize++;
 		return;
 	}
 
-	Student* tail = head;
-	while (tail->next) { tail = tail->next; }	
-	tail->next = &newStudent;
-}
+	Student* tail = nullptr;
+	if (listSize == 1) { tail = &head; }
+	else { tail = head.next; }
 
-void List::insert(Student& newStudent, size_t key)
-{
-	if (key > listSize) { return; }
-	
-	Student* tail = head;
-	size_t currElem = 0;
-	while (currElem != key)
+	while (tail->next) { tail = tail->next; }
+
+	if (typeid(data) == typeid(Student))
 	{
-		currElem++;
-		tail = tail->next;
+		tail->next = new Student(data);
 	}
 
-	newStudent.next = tail->next;
-	tail->next = &newStudent;
-	++listSize;
+	else if (typeid(data) == typeid(StudentA))
+	{
+		tail->next = new StudentA(reinterpret_cast<const StudentA&>(data));
+	}
+
+	else if (typeid(data) == typeid(StudentB))
+	{
+		tail->next = new StudentB(reinterpret_cast<const StudentB&>(data));
+	}
+
+	if (!tail->next) { exit(-1); }
+	listSize++;
+	tail->next->next = nullptr;
+}
+
+void List::insert(const Student& data, size_t key)
+{
+	if (key > listSize || key < 1) { return; }
+
+	if (!listSize)
+	{
+		head = data;
+		listSize++;
+		return;
+	}
+
+	else if (listSize == 1)
+	{
+		Student* temp = &head;
+		head = data;
+		head.next = temp;
+		listSize++;
+		return;
+	}
+
+	Student* tail = head.next;
+	for (size_t i = 2; i < key; i++) { tail = tail->next; }
+	
+	Student* temp = tail->next;
+	if (typeid(data) == typeid(Student))
+	{
+		tail->next = new Student(data);
+	}
+
+	else if (typeid(data) == typeid(StudentA))
+	{
+		tail->next = new StudentA(reinterpret_cast<const StudentA&>(data));
+	}
+
+	else if (typeid(data) == typeid(StudentB))
+	{
+		tail->next = new StudentB(reinterpret_cast<const StudentB&>(data));
+	}
+
+	if (!tail->next) { exit(-1); }
+	listSize++;
+	tail->next->next = temp;
 }
 
 void List::remove()
 {
-	if (!head) { return; }
+	if (!listSize) { return; }
+
 	if (listSize == 1)
 	{
-		head = nullptr;
-		--listSize;
+		listSize--;
 		return;
 	}
 
-	Student* tail = head;
+	Student* tail = head.next;
 	while (tail->next->next) { tail = tail->next; }
 	
+	Student* temp = tail->next;
 	tail->next = nullptr;
-	--listSize;
+	delete temp;
+
+	listSize--;
 }
 
 void List::remove(size_t key)
 {
-	if (key > listSize) { return; }
-	if (!head) { return; }
-	if (listSize == 1 || key == 0)
+	if (key > listSize || key < 0) { return; }
+	if (!listSize) { return; }
+
+	if (listSize == 1)
 	{
-		head = head->next; 
-		--listSize;
+		head = *(head.next); 
+		listSize--;
 		return;
 	}
 
-	Student* tail = head, *temp = nullptr;
-	for (size_t currElem = 0; currElem + 1 != key; currElem++)
-	{
-		tail = tail->next;
-	}
+	Student* tail = head.next;
+	for (size_t i = 2; i + 1 != key; i++) { tail = tail->next; }
 	
-	temp = tail->next;
-	tail->next = temp->next;
-	temp->next = nullptr;
-	--listSize;
+	Student* temp = tail->next;
+	tail->next = nullptr;
+	delete temp;
+
+	listSize--;
 }
 
-Student* List::find(size_t key) const
+const Student* List::find(size_t key) const
 {
 	if (key >= listSize) { return nullptr; }
 
-	Student* tail = head;
-	for (size_t currElem = 0; currElem < key; currElem++)
-	{
-		tail = tail->next;
-	}
-	
+	if (key == 1) { return &head; }
+
+	Student* tail = head.next;
+	for (size_t i = 2; i < key; i++) { tail = tail->next; }
 	return tail;
 }
 
 void List::output() const
 {
-	std::cout << "\nLIST:" << "\n";
+	std::cout << "LIST:" << "\n";
 
-	Student* tail = head;
-	while (tail)
+	if (listSize)
 	{
-		std::cout << *tail;
-		tail = tail->next;
-		std::cout << " TO" << "\n";
+		std::cout << head << "\n" << "TO ";
+		Student* tail = head.next;
+		while (tail)
+		{
+			tail->print();
+			tail = tail->next;
+			std::cout << "TO ";
+		}
+
+		std::cout << "END OF THE LIST" << "\n";
 	}
 
-	std::cout << "END OF THE LIST" << "\n";
+	else { std::cout << "LIST IS EMPTY" << "\n"; }
 }
