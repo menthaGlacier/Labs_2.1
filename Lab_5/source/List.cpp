@@ -79,11 +79,15 @@ void List::insert(const Student& data, size_t key)
 		return;
 	}
 
-	if (listSize == 1)
+	if (listSize == 1 || key == 1)
 	{
-		Student* temp = &head;
+		Student* tail = &head;
+		Student* temp = tail->next;
+		tail->next = new Student(head);
+		if (!tail->next) { exit(-1); }
+		tail->next->next = temp;
 		head = data;
-		head.next = temp;
+		head.next = tail;
 		listSize++;
 		return;
 	}

@@ -104,6 +104,12 @@ int main()
 
 	std::cout << "\n";
 
+	list_1.insert(resultB_1, 1);
+	list_1.insert(result_1, 2);
+	list_1.output();
+
+	std::cout << "\n";
+
 	std::cout << *(list_1.find(2));
 
 	return 0;
