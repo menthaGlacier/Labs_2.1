@@ -99,6 +99,7 @@ int main()
 
 	list_1.remove();
 	list_1.remove(1);
+	list_1.remove(2);
 	list_1.output();
 
 	std::cout << "\n";
