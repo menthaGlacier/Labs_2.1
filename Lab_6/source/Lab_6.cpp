@@ -116,5 +116,8 @@ int main()
 	/* Testing find method */
 	std::cout << *(list_1.find(2));
 
+	/* Testing exceptions */
+	fileText << student_1;
+
 	return 0;
 }

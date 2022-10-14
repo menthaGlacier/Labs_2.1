@@ -3,6 +3,7 @@
 
 #include "pch.h"
 #include "Student.h"
+#include "Exceptions.h"
 
 enum class FlMode
 {
