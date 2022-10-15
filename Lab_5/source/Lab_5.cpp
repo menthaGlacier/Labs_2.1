@@ -97,6 +97,7 @@ int main()
 
 	std::cout << "\n";
 
+	/* Testing remove methods */
 	list_1.remove();
 	list_1.remove(1);
 	list_1.remove(2);
@@ -104,12 +105,15 @@ int main()
 
 	std::cout << "\n";
 
+	/* Testing insert by key method */
 	list_1.insert(resultB_1, 1);
 	list_1.insert(result_1, 2);
+	list_1.insert(student_2, 3);
 	list_1.output();
 
 	std::cout << "\n";
 
+	/* Testing find method */
 	std::cout << *(list_1.find(2));
 
 	return 0;
