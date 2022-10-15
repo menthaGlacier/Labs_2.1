@@ -133,7 +133,6 @@ void List::remove()
 	Student* temp = tail->next;
 	tail->next = nullptr;
 	delete temp;
-
 	listSize--;
 }
 
@@ -171,7 +170,6 @@ void List::remove(size_t key)
 const Student* List::find(size_t key) const
 {
 	if (key >= listSize) { return nullptr; }
-
 	if (key == 1) { return &head; }
 
 	Student* tail = head.next;
