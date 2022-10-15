@@ -6,16 +6,19 @@
 class Exception
 {
 public:
-	Exception() : str(nullptr) {}
+	Exception()
+		: errStr(nullptr) {}
 
-	Exception(const char* _str) : str(_str) {}
+	Exception(const char* _errStr)
+		: errStr(_errStr) {}
 
 	void what()
 	{
-		if (str) { std::cout << "\n\n" << str << "\n\n"; }
+		if (errStr) { std::cout << "\n\n" << errStr << "\n\n"; }
 	}
+
 protected:
-		const char* str;
+	const char* errStr;
 };
 
 class FileClosedExc : public Exception
@@ -47,4 +50,5 @@ class InvalidFileTypeExc : public Exception
 public:
 	InvalidFileTypeExc() : Exception("[ERROR] Invalid file type.") {}
 };
+
 #endif /* EXCEPTIONS_H */
