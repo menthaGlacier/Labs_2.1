@@ -64,8 +64,8 @@ void List::insert(const Student& data)
 	}
 
 	if (!tail->next) { exit(-1); }
-	listSize++;
 	tail->next->next = nullptr;
+	listSize++;
 }
 
 void List::insert(const Student& data, size_t key)
@@ -81,13 +81,12 @@ void List::insert(const Student& data, size_t key)
 
 	if (listSize == 1 || key == 1)
 	{
-		Student* tail = &head;
-		Student* temp = tail->next;
-		tail->next = new Student(head);
-		if (!tail->next) { exit(-1); }
-		tail->next->next = temp;
+		Student* tail = head.next;
+		Student* temp = new Student(head);
+		if (!temp) { exit(-1); }
+		temp->next = tail;
 		head = data;
-		head.next = tail;
+		head.next = temp;
 		listSize++;
 		return;
 	}
