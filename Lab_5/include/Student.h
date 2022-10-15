@@ -43,6 +43,7 @@ protected:
 	int age;
 	float GPA;
 
+private:
 	friend class List;
 	Student* next;
 };
