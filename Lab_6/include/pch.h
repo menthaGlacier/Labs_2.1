@@ -3,5 +3,6 @@
 
 #include <iostream>
 #include <fstream>
+#include <typeinfo>
 
 #endif /* PCH_H */

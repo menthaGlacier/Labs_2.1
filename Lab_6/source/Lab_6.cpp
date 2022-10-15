@@ -39,7 +39,7 @@ int main()
 	result_2++;
 
 	/* Checking results */
-    std::cout << student_1 << "\n";
+	std::cout << student_1 << "\n";
 	std::cout << student_2 << "\n";
 	std::cout << result_1 << "\n";
 	std::cout << result_2 << "\n\n";
@@ -85,13 +85,36 @@ int main()
 	/* Testing virtual method */
 	Student* studPtr = &studentB_1;
 	studPtr->print();
+	std::cout << "\n";
 
 	/* Testing list */
 	List list_1(student_1);
-	list_1.insert(studentB_1);
 	list_1.insert(studentA_2);
-
+	list_1.insert(studentB_1);
+	list_1.insert(student_1);
+	list_1.insert(studentB_2);
 	list_1.output();
+
+	std::cout << "\n";
+
+	/* Testing remove methods */
+	list_1.remove();
+	list_1.remove(1);
+	list_1.remove(2);
+	list_1.output();
+
+	std::cout << "\n";
+
+	/* Testing insert by key method */
+	list_1.insert(resultB_1, 1);
+	list_1.insert(result_1, 2);
+	list_1.insert(student_2, 3);
+	list_1.output();
+
+	std::cout << "\n";
+
+	/* Testing find method */
+	std::cout << *(list_1.find(2));
 
 	return 0;
 }

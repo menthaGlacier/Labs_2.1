@@ -3,28 +3,30 @@
 
 #include "pch.h"
 #include "Student.h"
+#include "StudentA.h"
+#include "StudentB.h"
 
 class List
 {
 public:
 	List();
-	List(Student& _head);
+	List(const Student& _head);
 	~List();
 
 	bool isEmpty() const;
 	size_t getSize() const;
 
-	void insert(Student& newStudent);
-	void insert(Student& newStudent, size_t key);
+	void insert(const Student& data);
+	void insert(const Student& data, size_t key);
 
 	void remove();
 	void remove(size_t key);
 	
-	Student* find(size_t key) const;
+	const Student* find(size_t key) const;
 	void output() const;
 
 private:
-	Student* head;
+	Student head;
 	size_t listSize;
 };
 

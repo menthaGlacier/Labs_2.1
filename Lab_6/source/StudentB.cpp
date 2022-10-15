@@ -4,8 +4,8 @@ StudentB::StudentB()
 	: Student(), sdBInt(0), sdBChar('\0') {}
 
 StudentB::StudentB(String _name, int _age, float _GPA, int _sdBInt,
-	char _sdBChar) : Student(_name, _age, _GPA), sdBInt(_sdBInt), 
-	sdBChar(_sdBChar) {}
+	char _sdBChar)
+		: Student(_name, _age, _GPA), sdBInt(_sdBInt), sdBChar(_sdBChar) {}
 
 StudentB::StudentB(const StudentB& copy)
 	: Student(copy), sdBInt(copy.sdBInt), sdBChar(copy.sdBChar) {}

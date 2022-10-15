@@ -1,7 +1,7 @@
 #include "../include/Student.h"
 
 Student::Student()
-	: name(), age(0), GPA(0.0f) {}
+	: name(), age(0), GPA(0.0f), next(nullptr) {}
 
 Student::Student(String _name, int _age, float _GPA)
 	: name(_name), age(_age), GPA(_GPA), next(nullptr) {}
@@ -13,22 +13,19 @@ Student::~Student() {}
 
 Student Student::addition(const Student& add) const
 {
-	return Student(name + add.name, age + add.age,
-		(GPA + add.GPA) / 2.0f);
+	return Student(name + add.name, age + add.age, (GPA + add.GPA) / 2.0f);
 }
 
 Student Student::operator+(const Student& add) const
 {
-	return Student(name + add.name, age + add.age, 
-		(GPA + add.GPA) / 2.0f); 
+	return Student(name + add.name, age + add.age, (GPA + add.GPA) / 2.0f); 
 }
 
 Student operator-(const Student& base, const Student& low)
 {
 	if ((base.GPA - low.GPA) < 0)
 	{
-		return Student(base.name - low.name, 
-			base.age - low.age, 0.0f);
+		return Student(base.name - low.name, base.age - low.age, 0.0f);
 	}
 
 	return Student(base.name - low.name, base.age - low.age,
