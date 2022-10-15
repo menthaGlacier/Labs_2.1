@@ -91,7 +91,9 @@ void List::insert(const Student& data, size_t key)
 		return;
 	}
 
-	Student* tail = head.next;
+	Student* tail = nullptr;
+	if (key == 2) { tail = &head; }
+	else { tail = head.next; }
 	for (size_t i = 2; i < key; i++) { tail = tail->next; }
 	
 	Student* temp = tail->next;
@@ -111,8 +113,8 @@ void List::insert(const Student& data, size_t key)
 	}
 
 	if (!tail->next) { exit(-1); }
-	listSize++;
 	tail->next->next = temp;
+	listSize++;
 }
 
 void List::remove()
