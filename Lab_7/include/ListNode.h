@@ -20,18 +20,6 @@ public:
 	   	}
 	}
 
-	/* Unused **********
-	ListNode& nextNode()
-	{
-		return *next;
-	}
-
-	ListNode& prevNode()
-	{
-		return *prev;
-	}
-	*******************/
-
 	template <class L>
 	friend class List;
 
@@ -41,4 +29,4 @@ private:
 	ListNode *prev, *next;
 };
 
-#endif /* TEMPLATE_LIST_NODE_H  */
+#endif /* TEMPLATE_LIST_NODE_H */

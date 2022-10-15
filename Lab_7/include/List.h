@@ -10,7 +10,8 @@ class List
 public:
 	List() = delete;
 
-	List(const T& data) : head(nullptr)
+	List(const T& data)
+		: head(nullptr)
 	{
 		try
 		{
@@ -18,7 +19,7 @@ public:
 		}
 		catch(std::bad_alloc& e)
 		{
-			std::cout << "\n\n[ERROR] Allocation failed:"
+			std::cout << "\n\n" << "[ERROR] Allocation failed:"
 				<< e.what() << std::endl;
 			exit(2);
 		}
@@ -29,9 +30,7 @@ public:
 		while (head->next != head)
 		{	
 			ListNode<T>* pointer(head);
-
 			head = head->next;
-
 			delete pointer;
 		}
 
@@ -75,15 +74,15 @@ public:
 
 	ListNode<T>& insertNode(const T& new_data, int index)
 	{
-		ListNode<T> *place(&this->operator[](index)), *new_node(nullptr);
+		ListNode<T>* place(&this->operator[](index)), *new_node(nullptr);
 		
 		try
 		{
-			new_node = new ListNode<T> (new_data);
+			new_node = new ListNode<T>(new_data);
 		}
 		catch(std::bad_alloc& e)
 		{
-			std::cout << "\n\n[ERROR] Allocation failed:"
+			std::cout << "\n\n" << "[ERROR] Allocation failed:"
 				<< e.what() << std::endl;
 			exit(2);
 		}

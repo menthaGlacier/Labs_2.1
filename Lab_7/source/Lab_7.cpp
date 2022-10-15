@@ -36,7 +36,7 @@ int main()
 	intList.insertNode(3, 0);
 	intList.insertNode(4, -1);
 	
-	/*Swtiching head of list to previous element */
+	/* Swtiching head of list to previous element */
 	intList.prevHead();
 
 	/* Normal list printing */
@@ -46,9 +46,9 @@ int main()
 	intList.print(true);
 	std::cout << "\n";
 
-	/* Searching for values with index i in list  */
-	std::cout << "Int list[17]: " << intList[17].data <<
-		"\nChar list[13]: " << charList[13].data << std::endl;
+	/* Searching for values with index i in list */
+	std::cout << "Int list[17]: " << intList[17].data << "\n"
+		<< "Char list[13]: " << charList[13].data << std::endl;
 
 	return 0;
 }
