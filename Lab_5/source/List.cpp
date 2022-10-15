@@ -157,16 +157,9 @@ void List::remove(size_t key)
 		return;
 	}
 
-	if (key == 2)
-	{
-		Student* temp = head.next;
-		head.next = temp->next;
-		delete temp;
-		listSize--;
-		return;
-	}
-
-	Student* tail = head.next;
+	Student* tail = nullptr;
+	if (key == 2) { tail = &head; }
+	else { tail = head.next; }
 	for (size_t i = 2; i < key; i++) { tail = tail->next; }
 	
 	Student* temp = tail->next;
