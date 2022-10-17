@@ -10,9 +10,8 @@ File::~File()
 
 bool File::isOpen() const
 {
-        return fl.is_open();
+	return fl.is_open();
 }
-
 
 void File::open(FlMode flMode, FlType flType)
 {
@@ -21,19 +20,26 @@ void File::open(FlMode flMode, FlType flType)
 
 	if (flMode == FlMode::Read)
 	{
-		if (flType == FlType::Binary) { fl.open("LAB.bin", std::fstream::in | std::fstream::binary); }
+		if (flType == FlType::Binary)
+		{
+			fl.open("LAB.bin", std::fstream::in | std::fstream::binary);
+		}
+
 		if (flType == FlType::Text) { return; }
 	}
 
 	else if (flMode == FlMode::Write)
 	{       
-		if (flType == FlType::Binary) { fl.open("LAB.bin", std::fstream::out | std::fstream::binary); }
+		if (flType == FlType::Binary)
+		{
+			fl.open("LAB.bin", std::fstream::out | std::fstream::binary);
+		}
+
 		if (flType == FlType::Text) { fl.open("LAB.txt", std::fstream::out); }
 	}
 
 	mode = flMode; type = flType;
 }
-
 
 void File::close()
 {
@@ -60,7 +66,6 @@ File& operator<<(File& file, const String& str)
 	}
 
 	return file;
-
 }
 
 File& operator<<(File& file, const Student& student)
@@ -80,7 +85,8 @@ File& operator<<(File& file, const Student& student)
 
 	if (file.type == FlType::Text)
 	{
-		file.fl << student.getName() << " " << student.getAge() << " " << student.getGPA() << "\n"; 
+		file.fl << student.getName() << " " << student.getAge()
+			<< " " << student.getGPA() << "\n"; 
 	}
 
 	return file;
