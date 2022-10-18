@@ -10,36 +10,39 @@ File::~File()
 
 bool File::isOpen() const
 {
-	return fl.is_open();
+        return fl.is_open();
 }
+
 
 void File::open(FlMode flMode, FlType flType)
 {
 	if (fl.is_open()) { fl.close(); }
-	if (flMode == FlMode::None || flType == FlType::None) { return; }
-
-	if (flMode == FlMode::Read)
+	try
 	{
-		if (flType == FlType::Binary)
-		{
-			fl.open("LAB.bin", std::fstream::in | std::fstream::binary);
-		}
+		if (flMode == FlMode::None) { NoFileModeExc e; throw e; }
+		if (flType == FlType::None) { NoFileTypeExc e; throw e; }
 
-		if (flType == FlType::Text) { return; }
+		if (flMode == FlMode::Read)
+		{
+			if (flType == FlType::Binary) { fl.open("LAB.bin", std::fstream::in | std::fstream::binary); }
+			if (flType == FlType::Text) { InvalidFileTypeExc e; throw e; }
+		}
+	}
+	catch(Exception e)
+	{
+		e.what();
+		exit(2);
 	}
 
-	else if (flMode == FlMode::Write)
+	if (flMode == FlMode::Write)
 	{       
-		if (flType == FlType::Binary)
-		{
-			fl.open("LAB.bin", std::fstream::out | std::fstream::binary);
-		}
-
+		if (flType == FlType::Binary) { fl.open("LAB.bin", std::fstream::out | std::fstream::binary); }
 		if (flType == FlType::Text) { fl.open("LAB.txt", std::fstream::out); }
 	}
 
 	mode = flMode; type = flType;
 }
+
 
 void File::close()
 {
@@ -48,8 +51,19 @@ void File::close()
 
 File& operator<<(File& file, const String& str)
 {
-	if (file.mode == FlMode::None || file.mode == FlMode::Read) { return file; }
-	if (file.type == FlType::None || !file.fl.is_open()) { return file; }
+	try
+	{
+		if (file.mode == FlMode::None) { NoFileModeExc e; throw e; }
+		if (file.type == FlType::None) { NoFileTypeExc e; throw e; }
+
+		if (file.mode == FlMode::Read) { InvalidFileModeExc e; throw e; }
+		if (!file.fl.is_open()) { FileClosedExc e; throw e; }
+	}
+	catch(Exception e)
+	{
+		e.what();
+		exit(3);
+	}
 
 	if (file.type == FlType::Binary)
 	{
@@ -66,12 +80,24 @@ File& operator<<(File& file, const String& str)
 	}
 
 	return file;
+
 }
 
 File& operator<<(File& file, const Student& student)
 {
-	if (file.mode == FlMode::None || file.mode == FlMode::Read) { return file; }
-	if (file.type == FlType::None || !file.fl.is_open()) { return file; }
+	try
+	{
+		if (file.mode == FlMode::None) { NoFileModeExc e; throw e; }
+		if (file.type == FlType::None) { NoFileTypeExc e; throw e; }
+
+		if (file.mode == FlMode::Read) { InvalidFileModeExc e; throw e; }
+		if (!file.fl.is_open()) { FileClosedExc e; throw e; }
+	}
+	catch(Exception e)
+	{
+		e.what();
+		exit(4);
+	}
 
 	if (file.type == FlType::Binary)
 	{
@@ -85,8 +111,7 @@ File& operator<<(File& file, const Student& student)
 
 	if (file.type == FlType::Text)
 	{
-		file.fl << student.getName() << " " << student.getAge()
-			<< " " << student.getGPA() << "\n"; 
+		file.fl << student.getName() << " " << student.getAge() << " " << student.getGPA() << "\n"; 
 	}
 
 	return file;
@@ -94,9 +119,21 @@ File& operator<<(File& file, const Student& student)
 
 File& operator>>(File& file, String& str)
 {
-	if (file.mode == FlMode::None || file.mode == FlMode::Write) { return file; }
-	if (file.type == FlType::None || !file.fl.is_open()) { return file; }
-		
+	try
+	{
+		if (file.mode == FlMode::None) { NoFileModeExc e; throw e; }
+		if (file.type == FlType::None) { NoFileTypeExc e; throw e; }
+
+		if (file.mode == FlMode::Write) { InvalidFileModeExc e; throw e; }
+		if (!file.fl.is_open()) { FileClosedExc e; throw e; }
+		if (file.type == FlType::Text) { InvalidFileTypeExc e; throw e; }
+	}
+	catch(Exception e)
+	{
+		e.what();
+		exit(5);
+	}
+
 	if (file.type == FlType::Binary)
 	{		
 		char* string = &str[0];
@@ -117,8 +154,20 @@ File& operator>>(File& file, String& str)
 
 File& operator>>(File& file, Student& student)
 {
-	if (file.mode == FlMode::None || file.mode == FlMode::Write) { return file; }
-	if (file.type == FlType::None || !file.fl.is_open()) { return file; }
+	try
+	{
+		if (file.mode == FlMode::None) { NoFileModeExc e; throw e; }
+		if (file.type == FlType::None) { NoFileTypeExc e; throw e; }
+
+		if (file.mode == FlMode::Write) { InvalidFileModeExc e; throw e; }
+		if (!file.fl.is_open()) { FileClosedExc e; throw e; }
+		if (file.type == FlType::Text) { InvalidFileTypeExc e; throw e; }
+	}
+	catch(Exception e)
+	{
+		e.what();
+		exit(6);
+	}
 
 	if (file.type == FlType::Binary)
 	{
