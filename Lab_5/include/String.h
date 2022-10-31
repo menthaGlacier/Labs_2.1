@@ -27,7 +27,7 @@ public:
 	bool isEmpty() const;
 	size_t getLength() const;
 private:
-	void copystr(const char* from, char* to, size_t amount) const;	
+	void copystr(const char* from, char* to, size_t amount) const;
 	
 	char* string;
 	size_t size;

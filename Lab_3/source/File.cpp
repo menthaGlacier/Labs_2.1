@@ -29,7 +29,7 @@ void File::open(FlMode flMode, FlType flType)
 	}
 
 	else if (flMode == FlMode::Write)
-	{       
+	{
 		if (flType == FlType::Binary)
 		{
 			fl.open("LAB.bin", std::fstream::out | std::fstream::binary);
@@ -104,10 +104,10 @@ File& operator>>(File& file, String& str)
 
 		file.fl.read(reinterpret_cast<char*>(&length), sizeof(size_t));
 		if (length > 0)
-	   	{
+		{
 			string = new char[length];
 			file.fl.read(string, length);
-	   	}
+		}
 		
 		str = String(string, length);
 		delete[] string;

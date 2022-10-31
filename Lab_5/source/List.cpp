@@ -11,8 +11,8 @@ List::List(const Student& _head)
 
 List::~List()
 {
-	if (!listSize) { return; }	
-	
+	if (!listSize) { return; }
+
 	Student* tail = head.next;
 	while (tail)
 	{
@@ -95,7 +95,7 @@ void List::insert(const Student& data, size_t key)
 	if (key == 2) { tail = &head; }
 	else { tail = head.next; }
 	for (size_t i = 2; i < key; i++) { tail = tail->next; }
-	
+
 	Student* temp = tail->next;
 	if (typeid(data) == typeid(Student))
 	{
@@ -129,7 +129,7 @@ void List::remove()
 
 	Student* tail = head.next;
 	while (tail->next->next) { tail = tail->next; }
-	
+
 	Student* temp = tail->next;
 	tail->next = nullptr;
 	delete temp;
@@ -160,7 +160,7 @@ void List::remove(size_t key)
 	if (key == 2) { tail = &head; }
 	else { tail = head.next; }
 	for (size_t i = 2; i < key; i++) { tail = tail->next; }
-	
+
 	Student* temp = tail->next;
 	tail->next = temp->next;
 	delete temp;

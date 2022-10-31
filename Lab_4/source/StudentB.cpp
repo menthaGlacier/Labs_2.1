@@ -39,13 +39,13 @@ StudentB operator-(const StudentB& base, const StudentB& low)
 
 StudentB& StudentB::operator=(const StudentB& student)
 {
-    if (this == &student) { return *this; }
-    name = student.name;
-    age = student.age;
-    GPA = student.GPA;
-    sdBInt = student.sdBInt;
-    sdBChar = student.sdBChar;
-    return *this;
+	if (this == &student) { return *this; }
+	name = student.name;
+	age = student.age;
+	GPA = student.GPA;
+	sdBInt = student.sdBInt;
+	sdBChar = student.sdBChar;
+	return *this;
 }
 
 StudentB::operator int() const

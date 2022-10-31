@@ -38,7 +38,7 @@ void File::open(FlMode flMode, FlType flType)
 	}
 
 	if (flMode == FlMode::Write)
-	{       
+	{
 		if (flType == FlType::Binary)
 		{
 			fl.open("LAB.bin", std::fstream::out | std::fstream::binary);
@@ -79,7 +79,7 @@ File& operator<<(File& file, const String& str)
 		file.fl.write(reinterpret_cast<char*>(&length), sizeof(size_t));
 		if (length > 0) { file.fl.write(string, length); }
 	}
-	
+
 	if (file.type == FlType::Text)
 	{
 		file.fl << str; 
@@ -141,17 +141,17 @@ File& operator>>(File& file, String& str)
 	}
 
 	if (file.type == FlType::Binary)
-	{		
+	{
 		char* string = &str[0];
 		size_t length = 0;
 
 		file.fl.read(reinterpret_cast<char*>(&length), sizeof(size_t));
 		if (length > 0)
-	   	{
+		{
 			string = new char[length];
 			file.fl.read(string, length);
-	   	}
-		
+	 	}
+
 		str = String(string, length);
 		delete[] string;
 	}
@@ -181,11 +181,11 @@ File& operator>>(File& file, Student& student)
 		String name;
 		int age = 0;
 		float GPA = 0.0f;
-		
+
 		file >> name;
 		file.fl.read(reinterpret_cast<char*>(&age), sizeof(int));
 		file.fl.read(reinterpret_cast<char*>(&GPA), sizeof(float));
-		
+
 		student.setName(name);
 		student.setAge(age);
 		student.setGPA(GPA);

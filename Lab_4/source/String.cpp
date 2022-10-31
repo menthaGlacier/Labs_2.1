@@ -110,7 +110,7 @@ String String::operator-(const String& str) const
 	if (isEmpty()) { return str; }
 	if (str.isEmpty()) { return *this; }
 	
-	size_t new_size = (size > str.size) ? size - str.size : str.size - size;	
+	size_t new_size = (size > str.size) ? size - str.size : str.size - size;
 	char* new_str = new char[new_size];
 
 	if (size > str.size) { copystr(string, new_str, new_size); }

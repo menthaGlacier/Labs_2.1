@@ -8,7 +8,7 @@ extern bool SHOW_TRACE;
 template<class T>
 class Analyzer
 {
-public:	
+public:
 	virtual ~Analyzer() {};
 
 	virtual void generate(size_t amount) = 0;
@@ -163,4 +163,4 @@ private:
 	clock_t clock_time;
 };
 
-#endif /* ANALYZER_H  */
+#endif /* ANALYZER_H */

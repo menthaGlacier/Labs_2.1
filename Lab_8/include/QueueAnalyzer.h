@@ -61,7 +61,7 @@ public:
 		if (data.empty()) 
 		{
 			timerStop();
-		   	return -1;
+			return -1;
 		}
 		std::queue<T> copy(data);
 
@@ -72,15 +72,15 @@ public:
 			if (copy.front() == value) 
 			{
 				timerStop();
-			   	return i;
-		   	}
+				return i;
+			}
 			copy.pop();
 		}
 
 		timerStop();
 		return -1;
 	}
-	
+
 	void sort() override
 	{
 		timerStart();
@@ -89,8 +89,8 @@ public:
 		if (size < 2) 
 		{
 			timerStop();
-		   	return;
-	   	}
+			return;
+		}
 
 		T* data_array = new T[size];
 
@@ -114,7 +114,7 @@ public:
 					break;
 				}
 			}
-			
+
 			data.pop();
 		}
 

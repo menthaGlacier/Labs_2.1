@@ -28,7 +28,7 @@ public:
 	~List()
 	{
 		while (head->next != head)
-		{	
+		{
 			ListNode<T>* pointer(head);
 			head = head->next;
 			delete pointer;
@@ -36,7 +36,7 @@ public:
 
 		delete head;
 	}
-	
+
 	List& nextHead()
 	{
 		head = head->next;
@@ -75,7 +75,7 @@ public:
 	ListNode<T>& insertNode(const T& new_data, int index)
 	{
 		ListNode<T>* place(&this->operator[](index)), *new_node(nullptr);
-		
+
 		try
 		{
 			new_node = new ListNode<T>(new_data);
@@ -114,7 +114,7 @@ public:
 
 		if (reverse) { nextHead(); }
 	}
-	
+
 private:
 	ListNode<T>* head;
 };

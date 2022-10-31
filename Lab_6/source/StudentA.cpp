@@ -27,7 +27,7 @@ StudentA StudentA::operator+(const StudentA& add) const
 StudentA operator-(const StudentA& base, const StudentA& low)
 {
 	if ((base.GPA - low.GPA) < 0)
-    {
+	{
 		return StudentA(base.name - low.name, base.age - low.age,
 			0.0f, base.sdABool - low.sdABool, base.sdAChar - low.sdAChar);
 	}

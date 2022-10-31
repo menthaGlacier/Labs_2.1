@@ -21,7 +21,7 @@ public:
 
 	void remove();
 	void remove(size_t key);
-	
+
 	const Student* find(size_t key) const;
 	void output() const;
 

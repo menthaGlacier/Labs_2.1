@@ -7,7 +7,7 @@ int main()
 
 	/* Creating list of chars */
 	List<char> charList('a');
-	
+
 	/* Inserting values to list in different positions */
 	charList.insertNode('b', 0);
 	charList.insertNode('c', 1);
@@ -35,7 +35,7 @@ int main()
 	/* Inserting values to list in different positions */
 	intList.insertNode(3, 0);
 	intList.insertNode(4, -1);
-	
+
 	/* Swtiching head of list to previous element */
 	intList.prevHead();
 

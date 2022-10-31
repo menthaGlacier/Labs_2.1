@@ -83,8 +83,8 @@ std::ostream& operator<<(std::ostream& out, const Student& student)
 {
 	out << "Name: " << student.name <<
 	" | " << "Age: " << student.age <<
-    " | " << "GPA: " << student.GPA;
-    return out;
+	" | " << "GPA: " << student.GPA;
+	return out;
 }
 
 String Student::getName() const

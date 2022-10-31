@@ -14,10 +14,10 @@ public:
 	~ListNode()
 	{
 		if (next != this)
-	   	{
-		   	next->prev = prev;
+		{
+			next->prev = prev;
 			prev->next = next;
-	   	}
+		}
 	}
 
 	template <class L>

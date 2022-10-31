@@ -9,8 +9,8 @@ template <class T>
 class SetAnalyzer : public Analyzer<T>
 {
 public:
-    using Analyzer<T>::timerStart;
-    using Analyzer<T>::timerStop;
+	using Analyzer<T>::timerStart;
+	using Analyzer<T>::timerStop;
 	typedef typename std::set<T>::iterator set_iterator;
 
 	void generate(size_t amount) override
@@ -34,7 +34,7 @@ public:
 	void clear() override
 	{
 		timerStart();
-		data.clear();	
+		data.clear();
 		timerStop();
 	}
 
@@ -54,22 +54,22 @@ public:
 	{
 		timerStart();
 		set_iterator found_iter = data.find(value);
-		
+
 		int return_value = 0;
 
 		for (set_iterator iter = data.begin(); iter != data.end(); iter++)
 		{
 			if (iter == found_iter)
-		   	{
+			{
 				timerStop();
-			   	return return_value;
+				return return_value;
 			}
 			return_value++;
 		}
 		timerStop();
 		return -1;
 	}
-	
+
 	void sort() override
 	{
 		timerStart();

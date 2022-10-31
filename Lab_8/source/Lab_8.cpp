@@ -11,9 +11,9 @@ int main(int argc, char* argv[])
 		{
 			if (argv[i][0] == 'n' && argv[i][1] == 't') 
 			{
-			   	SHOW_TRACE = false;
+				SHOW_TRACE = false;
 				break;
-		   	}
+			}
 		}
 	}
 

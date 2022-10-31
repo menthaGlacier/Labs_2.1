@@ -88,12 +88,12 @@ String String::operator+(const String& str) const
 String& String::operator+=(const String& str)
 {
 	if (str.isEmpty()) { return *this; }
-	
+
 	size_t old_size = size;
 	size = old_size + str.size;
 	char* old_string = string;
 	string = new char[size];
-	
+
 	for (size_t i = 0; i < old_size || i < str.size; i++)
 	{
 		if (i < old_size) { string[i] = old_string[i]; }
@@ -109,8 +109,8 @@ String String::operator-(const String& str) const
 	if (size == str.size) { return String(); }
 	if (isEmpty()) { return str; }
 	if (str.isEmpty()) { return *this; }
-	
-	size_t new_size = (size > str.size) ? size - str.size : str.size - size;	
+
+	size_t new_size = (size > str.size) ? size - str.size : str.size - size;
 	char* new_str = new char[new_size];
 
 	if (size > str.size) { copystr(string, new_str, new_size); }
