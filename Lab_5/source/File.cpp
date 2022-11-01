@@ -109,7 +109,8 @@ File& operator>>(File& file, String& str)
 			file.fl.read(string, length);
 	   	}
 		
-		str = String(string, length);	
+		str = String(string, length);
+		delete[] string;
 	}
 
 	return file;
