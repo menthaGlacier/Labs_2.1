@@ -26,7 +26,7 @@ public:
 
 	bool isOpen() const;
 
-	void open(FlMode mode, FlType type);
+	void open(FlMode _mode, FlType _type);
 	void close();
 	
 	friend File& operator<<(File& file, const Student& student);

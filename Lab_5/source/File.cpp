@@ -13,32 +13,32 @@ bool File::isOpen() const
 	return fl.is_open();
 }
 
-void File::open(FlMode flMode, FlType flType)
+void File::open(FlMode _mode, FlType _type)
 {
 	if (fl.is_open()) { fl.close(); }
-	if (flMode == FlMode::None || flType == FlType::None) { return; }
+	if (_mode == FlMode::None || _type == FlType::None) { return; }
 
-	if (flMode == FlMode::Read)
+	if (_mode == FlMode::Read)
 	{
-		if (flType == FlType::Binary)
+		if (_type == FlType::Binary)
 		{
 			fl.open("LAB.bin", std::fstream::in | std::fstream::binary);
 		}
 
-		if (flType == FlType::Text) { return; }
+		if (_type == FlType::Text) { return; }
 	}
 
-	else if (flMode == FlMode::Write)
+	else if (_mode == FlMode::Write)
 	{
-		if (flType == FlType::Binary)
+		if (_type == FlType::Binary)
 		{
 			fl.open("LAB.bin", std::fstream::out | std::fstream::binary);
 		}
 
-		if (flType == FlType::Text) { fl.open("LAB.txt", std::fstream::out); }
+		if (_type == FlType::Text) { fl.open("LAB.txt", std::fstream::out); }
 	}
 
-	mode = flMode; type = flType;
+	mode = _mode; type = _type;
 }
 
 void File::close()

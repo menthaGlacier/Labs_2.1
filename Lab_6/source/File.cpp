@@ -13,22 +13,22 @@ bool File::isOpen() const
 	return fl.is_open();
 }
 
-void File::open(FlMode flMode, FlType flType)
+void File::open(FlMode _mode, FlType _type)
 {
 	if (fl.is_open()) { fl.close(); }
 	try
 	{
-		if (flMode == FlMode::None) { NoFileModeExc e; throw e; }
-		if (flType == FlType::None) { NoFileTypeExc e; throw e; }
+		if (_mode == FlMode::None) { NoFileModeExc e; throw e; }
+		if (_type == FlType::None) { NoFileTypeExc e; throw e; }
 
-		if (flMode == FlMode::Read)
+		if (_mode == FlMode::Read)
 		{
-			if (flType == FlType::Binary)
+			if (_type == FlType::Binary)
 			{
 				fl.open("LAB.bin", std::fstream::in | std::fstream::binary);
 			}
 
-			if (flType == FlType::Text) { InvalidFileTypeExc e; throw e; }
+			if (_type == FlType::Text) { InvalidFileTypeExc e; throw e; }
 		}
 	}
 	catch(Exception e)
@@ -37,17 +37,17 @@ void File::open(FlMode flMode, FlType flType)
 		exit(2);
 	}
 
-	if (flMode == FlMode::Write)
+	if (_mode == FlMode::Write)
 	{
-		if (flType == FlType::Binary)
+		if (_type == FlType::Binary)
 		{
 			fl.open("LAB.bin", std::fstream::out | std::fstream::binary);
 		}
 
-		if (flType == FlType::Text) { fl.open("LAB.txt", std::fstream::out); }
+		if (_type == FlType::Text) { fl.open("LAB.txt", std::fstream::out); }
 	}
 
-	mode = flMode; type = flType;
+	mode = _mode; type = _type;
 }
 
 void File::close()
