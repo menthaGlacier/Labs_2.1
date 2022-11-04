@@ -11,3 +11,5 @@ test
 # Ignore output files
 LAB.*
 
+# Ignore valgrind log file
+valgrind-out.txt
