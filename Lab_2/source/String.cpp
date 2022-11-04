@@ -1,10 +1,10 @@
 #include "../include/String.h"
 
 String::String()
-	: string{nullptr}, size{0} {}
+	: string(nullptr), size(0) {}
 
 String::String(const char* c_str)
-	: string{nullptr}, size{0}
+	: string(nullptr), size(0)
 {
 	if (!c_str) { return; }
 
@@ -14,7 +14,7 @@ String::String(const char* c_str)
 }
 
 String::String(const char* _string, size_t _size)
-	: string{nullptr}, size{_size}
+	: string(nullptr), size(_size)
 {
 	if (!_string) { return; }
 
@@ -23,7 +23,7 @@ String::String(const char* _string, size_t _size)
 }
 
 String::String(const String& copy)
-	: string{nullptr}, size{copy.size} 
+	: string(nullptr), size(copy.size) 
 {
 	if (!copy.string) { return; }
 
@@ -38,7 +38,6 @@ String::~String()
 
 char& String::operator[](size_t index) const
 {
-	if (index >= size) { throw "[ERROR]: Wrong string index"; }
 	return string[index];
 }
 
@@ -72,30 +71,32 @@ String& String::operator=(const String& str)
 
 String String::operator+(const String& str) const
 {
-	if (isEmpty() && str.isEmpty()) { return String{}; }
+	if (isEmpty() && str.isEmpty()) { return String(); }
 	if (isEmpty()) { return str; }
 	if (str.isEmpty()) { return *this; }
 
 	char* new_str = new char[size + str.size];
-	for (size_t i = 0; i < size || i < str.size; i++)
+	for (size_t i{0}; i < size || i < str.size; i++)
 	{
 		if (i < size) { new_str[i] = string[i]; }
 		if (i < str.size) { new_str[i + size] = str.string[i]; }
 	}
 
-	return String(new_str, size + str.size);
+	String return_string(new_str, size + str.size);
+	delete[] new_str;
+	return return_string;
 }
 
 String& String::operator+=(const String& str)
 {
 	if (str.isEmpty()) { return *this; }
-	
+
 	size_t old_size = size;
 	size = old_size + str.size;
 	char* old_string = string;
 	string = new char[size];
-	
-	for (size_t i = 0; i < old_size || i < str.size; i++)
+
+	for (size_t i{0}; i < old_size || i < str.size; i++)
 	{
 		if (i < old_size) { string[i] = old_string[i]; }
 		if (i < str.size) { string[i + old_size] = str.string[i]; }
@@ -116,8 +117,10 @@ String String::operator-(const String& str) const
 
 	if (size > str.size) { copystr(string, new_str, new_size); }
 	else { copystr(str.string, new_str, new_size); }
-
-	return String(new_str, new_size);
+	
+	String return_string(new_str, new_size);
+	delete[] new_str;
+	return return_string;
 }
 
 std::ostream& operator<<(std::ostream& out, const String& str)

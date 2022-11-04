@@ -1,10 +1,10 @@
 #include "../include/String.h"
 
 String::String()
-	: string{nullptr}, size{0} {}
+	: string(nullptr), size(0) {}
 
 String::String(const char* c_str)
-	: string{nullptr}, size{0}
+	: string(nullptr), size(0)
 {
 	if (!c_str) { return; }
 
@@ -14,7 +14,7 @@ String::String(const char* c_str)
 }
 
 String::String(const char* _string, size_t _size)
-	: string{nullptr}, size{_size}
+	: string(nullptr), size(_size)
 {
 	if (!_string) { return; }
 
@@ -22,13 +22,13 @@ String::String(const char* _string, size_t _size)
 	copystr(_string, string, size);
 }
 
-String::String(const String& str)
-	: string{nullptr}, size{str.size} 
+String::String(const String& copy)
+	: string(nullptr), size(copy.size) 
 {
-	if (!str.string) { return; }
+	if (!copy.string) { return; }
 
 	string = new char[size];
-	copystr(str.string, string, size);
+	copystr(copy.string, string, size);
 }
 
 String::~String()
@@ -45,7 +45,7 @@ char& String::operator[](size_t index) const
 bool String::operator==(const String& str) const
 {
 	if (size != str.size) { return false; }
-	for (size_t i{0}; i < size; i++)
+	for (size_t i = 0; i < size; i++)
 	{
 		if (string[i] != str.string[i]) { return false; }
 	}
@@ -72,9 +72,9 @@ String& String::operator=(const String& str)
 
 String String::operator+(const String& str) const
 {
-	if (size + str.size == 0) { return String{}; }
-	if (str.isEmpty()) { return *this; }
+	if (isEmpty() && str.isEmpty()) { return String(); }
 	if (isEmpty()) { return str; }
+	if (str.isEmpty()) { return *this; }
 
 	char* new_str = new char[size + str.size];
 	for (size_t i{0}; i < size || i < str.size; i++)
@@ -83,18 +83,20 @@ String String::operator+(const String& str) const
 		if (i < str.size) { new_str[i + size] = str.string[i]; }
 	}
 
-	return String{new_str, size + str.size};
+	String return_string(new_str, size + str.size);
+	delete[] new_str;
+	return return_string;
 }
 
 String& String::operator+=(const String& str)
 {
-	if (str.size == 0) { return *this; }
-	
+	if (str.isEmpty()) { return *this; }
+
 	size_t old_size = size;
 	size = old_size + str.size;
 	char* old_string = string;
 	string = new char[size];
-	
+
 	for (size_t i{0}; i < old_size || i < str.size; i++)
 	{
 		if (i < old_size) { string[i] = old_string[i]; }
@@ -125,10 +127,7 @@ size_t String::getLength() const
 	return size;
 }
 
-void String::copystr(const char* from, char* to, size_t amount)
+void String::copystr(const char* from, char* to, size_t amount) const
 {
-	for (size_t i{0}; i < amount; i++)
-	{
-		to[i] = from[i];
-	}
+	for (size_t i = 0; i < amount; i++) { to[i] = from[i]; }
 }
