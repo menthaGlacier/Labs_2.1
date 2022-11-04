@@ -20,6 +20,7 @@ public:
 		{
 			data.push(rand());
 		}
+
 		timerStop();
 	}
 
@@ -37,6 +38,7 @@ public:
 		{
 			data.pop();
 		}
+
 		timerStop();
 	}
 
@@ -52,6 +54,7 @@ public:
 				data.pop();
 			}
 		}
+
 		timerStop();
 	}
 
@@ -62,11 +65,12 @@ public:
 		{
 			timerStop();
 			return -1;
+		
 		}
+
 		std::queue<T> copy(data);
-
 		size_t size = copy.size();
-
+		
 		for (size_t i = 0; i < size; i++)
 		{
 			if (copy.front() == value) 
@@ -74,6 +78,7 @@ public:
 				timerStop();
 				return i;
 			}
+
 			copy.pop();
 		}
 
@@ -93,7 +98,6 @@ public:
 		}
 
 		T* data_array = new T[size];
-
 		for (size_t i = 0; i < size; i++)
 		{
 			for (size_t j = 0; j <= i; j++)
@@ -110,6 +114,7 @@ public:
 					{
 						data_array[i-k] = data_array[i-k-1];
 					}
+
 					data_array[j] = data.front();
 					break;
 				}

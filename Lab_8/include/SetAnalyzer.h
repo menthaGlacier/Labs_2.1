@@ -21,6 +21,7 @@ public:
 		{
 			data.insert(rand());
 		}
+
 		timerStop();
 	}
 
@@ -56,7 +57,6 @@ public:
 		set_iterator found_iter = data.find(value);
 
 		int return_value = 0;
-
 		for (set_iterator iter = data.begin(); iter != data.end(); iter++)
 		{
 			if (iter == found_iter)
@@ -64,8 +64,10 @@ public:
 				timerStop();
 				return return_value;
 			}
+
 			return_value++;
 		}
+
 		timerStop();
 		return -1;
 	}
@@ -84,6 +86,7 @@ public:
 		{
 			std::cout << " " << i;
 		}
+
 		std::cout << " }" << std::flush;
 	}
 

@@ -29,7 +29,7 @@ public:
 		{
 			if (SHOW_TRACE)
 			{
-				std::cout << "\nIteration " << r << std::flush;
+				std::cout << "\n" << "Iteration " << r << std::flush;
 				generate(data_size);
 				calculateTimeResult(gen_TR, getLastTime(), r);
 				std::cout << " generated" << std::flush;
@@ -81,7 +81,6 @@ public:
 
 		std::cout.setf(std::ios::fixed);
 		std::cout.precision(6);
-
 		std::cout << "\n\n"
 		"+--------------------Analyze results--------------------+" "\n"
 
@@ -128,14 +127,14 @@ public:
 protected:
 	void timerStart()
 	{
-		clock_time = clock();
+		clockTime = clock();
 	}
 
 	double timerStop()
 	{
-		clock_time = clock() - clock_time;
-		last_time = static_cast<double>(clock_time) / CLOCKS_PER_SEC;
-		return last_time;
+		clockTime = clock() - clockTime;
+		lastTime = static_cast<double>(clockTime) / CLOCKS_PER_SEC;
+		return lastTime;
 	}
 private:
 	struct TimeResults
@@ -156,11 +155,11 @@ private:
 
 	double getLastTime()
 	{
-		return last_time;
+		return lastTime;
 	}
 
-	double last_time;
-	clock_t clock_time;
+	double lastTime;
+	clock_t clockTime;
 };
 
 #endif /* ANALYZER_H */

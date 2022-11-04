@@ -106,7 +106,7 @@ public:
 		do
 		{
 			std::cout << "->" << pointer->data;
-			pointer = reverse ?	pointer->prev : pointer->next;
+			pointer = reverse ? pointer->prev : pointer->next;
 		} while (pointer != head);
 
 		if (reverse) { std::cout << "->[rcycle]\n"; }

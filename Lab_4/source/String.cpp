@@ -76,7 +76,7 @@ String String::operator+(const String& str) const
 	if (str.isEmpty()) { return *this; }
 
 	char* new_str = new char[size + str.size];
-	for (size_t i{0}; i < size || i < str.size; i++)
+	for (size_t i = 0; i < size || i < str.size; i++)
 	{
 		if (i < size) { new_str[i] = string[i]; }
 		if (i < str.size) { new_str[i + size] = str.string[i]; }
@@ -96,7 +96,7 @@ String& String::operator+=(const String& str)
 	char* old_string = string;
 	string = new char[size];
 
-	for (size_t i{0}; i < old_size || i < str.size; i++)
+	for (size_t i = 0; i < old_size || i < str.size; i++)
 	{
 		if (i < old_size) { string[i] = old_string[i]; }
 		if (i < str.size) { string[i + old_size] = str.string[i]; }
