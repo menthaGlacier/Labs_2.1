@@ -152,6 +152,7 @@ void List::remove(size_t key)
 		Student* temp = head.next;
 		head.next = head.next->next;
 		head = *(temp);
+		delete temp;
 		listSize--;
 		return;
 	}
