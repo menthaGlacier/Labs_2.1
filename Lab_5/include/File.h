@@ -28,7 +28,7 @@ public:
 
 	void open(FlMode _mode, FlType _type);
 	void close();
-	
+
 	friend File& operator<<(File& file, const Student& student);
 	friend File& operator<<(File& file, const String& str);
 	friend File& operator>>(File& file, Student& student);

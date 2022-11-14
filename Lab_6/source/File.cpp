@@ -82,7 +82,7 @@ File& operator<<(File& file, const String& str)
 
 	if (file.type == FlType::Text)
 	{
-		file.fl << str; 
+		file.fl << str;
 	}
 
 	return file;
@@ -111,13 +111,13 @@ File& operator<<(File& file, const Student& student)
 
 		file << student.getName();
 		file.fl.write(reinterpret_cast<char*>(&age), sizeof(int));
-		file.fl.write(reinterpret_cast<char*>(&GPA), sizeof(float)); 
+		file.fl.write(reinterpret_cast<char*>(&GPA), sizeof(float));
 	}
 
 	if (file.type == FlType::Text)
 	{
 		file.fl << student.getName() << " " << student.getAge()
-			<< " " << student.getGPA() << "\n"; 
+			<< " " << student.getGPA() << "\n";
 	}
 
 	return file;

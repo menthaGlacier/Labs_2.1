@@ -18,7 +18,7 @@ public:
 	friend Student operator-(const Student& base, const Student& low);
 
 	Student& operator=(const Student& student);
-	
+
 	Student& operator++();
 	Student operator++(int);
 

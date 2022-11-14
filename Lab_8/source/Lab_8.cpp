@@ -5,11 +5,11 @@ bool SHOW_TRACE = true;
 
 int main(int argc, char* argv[])
 {
-	if (argc > 1) 
+	if (argc > 1)
 	{
 		for (int i = 1; i < argc; i++)
 		{
-			if (argv[i][0] == 'n' && argv[i][1] == 't') 
+			if (argv[i][0] == 'n' && argv[i][1] == 't')
 			{
 				SHOW_TRACE = false;
 				break;

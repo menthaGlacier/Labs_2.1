@@ -26,7 +26,7 @@ void Student::print() const
 
 String Student::getName() const
 {
-	return name; 
+	return name;
 }
 
 void Student::setName(const String& _name)

@@ -16,19 +16,19 @@ public:
 	bool operator==(const String& str) const;
 
 	String& operator=(const String& str);
-	
+
 	String operator+(const String& str) const;
 	String& operator+=(const String& str);
 
 	String operator-(const String& str) const;
 
 	friend std::ostream& operator<<(std::ostream& out, const String& str);
-	
+
 	bool isEmpty() const;
 	size_t getLength() const;
 private:
 	void copystr(const char* from, char* to, size_t amount) const;
-	
+
 	char* string;
 	size_t size;
 };

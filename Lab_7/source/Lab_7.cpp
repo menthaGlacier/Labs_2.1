@@ -13,7 +13,7 @@ int main()
 	charList.insertNode('c', 1);
 	charList.insertNode('d', -1);
 	charList.insertNode('e', -2);
- 
+
 	/* Normal list printing */
 	charList.print();
 

@@ -23,7 +23,7 @@ String::String(const char* _string, size_t _size)
 }
 
 String::String(const String& copy)
-	: string(nullptr), size(copy.size) 
+	: string(nullptr), size(copy.size)
 {
 	if (!copy.string) { return; }
 
@@ -58,7 +58,7 @@ String& String::operator=(const String& str)
 
 	delete[] string;
 	size = str.size;
-	if (str.string == nullptr || size == 0) 
+	if (str.string == nullptr || size == 0)
 	{
 		string = nullptr;
 		return *this;
@@ -111,13 +111,13 @@ String String::operator-(const String& str) const
 	if (size == str.size) { return String(); }
 	if (isEmpty()) { return str; }
 	if (str.isEmpty()) { return *this; }
-	
-	size_t new_size = (size > str.size) ? size - str.size : str.size - size;	
+
+	size_t new_size = (size > str.size) ? size - str.size : str.size - size;
 	char* new_str = new char[new_size];
 
 	if (size > str.size) { copystr(string, new_str, new_size); }
 	else { copystr(str.string, new_str, new_size); }
-	
+
 	String return_string(new_str, new_size);
 	delete[] new_str;
 	return return_string;

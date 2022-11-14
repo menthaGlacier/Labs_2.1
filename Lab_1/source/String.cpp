@@ -23,7 +23,7 @@ String::String(const char* _string, size_t _size)
 }
 
 String::String(const String& copy)
-	: string(nullptr), size(copy.size) 
+	: string(nullptr), size(copy.size)
 {
 	if (!copy.string) { return; }
 
@@ -38,7 +38,6 @@ String::~String()
 
 char& String::operator[](size_t index) const
 {
-	if (index >= size) { throw "[ERROR]: Wrong string index"; }
 	return string[index];
 }
 
@@ -59,7 +58,7 @@ String& String::operator=(const String& str)
 
 	delete[] string;
 	size = str.size;
-	if (str.string == nullptr || size == 0) 
+	if (str.string == nullptr || size == 0)
 	{
 		string = nullptr;
 		return *this;
@@ -109,11 +108,7 @@ String& String::operator+=(const String& str)
 
 std::ostream& operator<<(std::ostream& out, const String& str)
 {
-	for (size_t i = 0; i < str.size; i++)
-	{
-		out << str[i];
-	}
-
+	for (size_t i = 0; i < str.size; i++) { out << str[i]; }
 	return out;
 }
 

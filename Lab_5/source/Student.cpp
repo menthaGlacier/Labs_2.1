@@ -18,7 +18,7 @@ Student Student::addition(const Student& add) const
 
 Student Student::operator+(const Student& add) const
 {
-	return Student(name + add.name, age + add.age, (GPA + add.GPA) / 2.0f); 
+	return Student(name + add.name, age + add.age, (GPA + add.GPA) / 2.0f);
 }
 
 Student operator-(const Student& base, const Student& low)
@@ -86,7 +86,7 @@ std::ostream& operator<<(std::ostream& out, const Student& student)
 
 String Student::getName() const
 {
-	return name; 
+	return name;
 }
 
 void Student::setName(const String& _name)
