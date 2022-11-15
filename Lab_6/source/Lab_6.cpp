@@ -114,7 +114,7 @@ int main()
 	std::cout << "\n";
 
 	/* Testing find method */
-	std::cout << *(list_1.find(2));
+	std::cout << *(list_1.find(2)) << std::endl;
 
 	/* Testing exceptions */
 	fileText << student_1;

@@ -70,7 +70,7 @@ void List::insert(const Student& data)
 
 void List::insert(const Student& data, size_t key)
 {
-	if (key > listSize || key < 1) { return; }
+	if (key > listSize) { return; }
 
 	if (!listSize)
 	{
@@ -79,22 +79,17 @@ void List::insert(const Student& data, size_t key)
 		return;
 	}
 
-	if (listSize == 1 || key == 1)
+	if (listSize == 0 || key == 0)
 	{
 		Student* tail = head.next;
-		Student* temp = new Student(head);
-		if (!temp) { exit(-1); }
-		temp->next = tail;
 		head = data;
-		head.next = temp;
+		head.next = tail;
 		listSize++;
 		return;
 	}
 
-	Student* tail = nullptr;
-	if (key == 2) { tail = &head; }
-	else { tail = head.next; }
-	for (size_t i = 2; i < key; i++) { tail = tail->next; }
+	Student* tail = &head;
+	for (size_t i = 1; i < key; i++) { tail = tail->next; }
 
 	Student* temp = tail->next;
 	if (typeid(data) == typeid(Student))
@@ -123,6 +118,7 @@ void List::remove()
 
 	if (listSize == 1)
 	{
+		head = Student();
 		listSize--;
 		return;
 	}
@@ -138,29 +134,28 @@ void List::remove()
 
 void List::remove(size_t key)
 {
-	if (!listSize) { return; }
-	if (key > listSize || key < 1) { return; }
+	if (!listSize || key >= listSize) { return; }
 
 	if (listSize == 1)
 	{
+		head = Student();
 		listSize--;
 		return;
 	}
 
-	if (key == 1)
+	if (key == 0)
 	{
 		Student* temp = head.next;
-		head.next = head.next->next;
 		head = *(temp);
+		head.next = temp->next;
 		delete temp;
 		listSize--;
 		return;
 	}
 
 	Student* tail = nullptr;
-	if (key == 2) { tail = &head; }
-	else { tail = head.next; }
-	for (size_t i = 2; i < key; i++) { tail = tail->next; }
+	tail = &head;
+	for (size_t i = 1; i < key; i++) { tail = tail->next; }
 
 	Student* temp = tail->next;
 	tail->next = temp->next;
@@ -171,10 +166,10 @@ void List::remove(size_t key)
 const Student* List::find(size_t key) const
 {
 	if (key >= listSize) { return nullptr; }
-	if (key == 1) { return &head; }
+	if (key == 0) { return &head; }
 
 	Student* tail = head.next;
-	for (size_t i = 2; i < key; i++) { tail = tail->next; }
+	for (size_t i = 1; i < key; i++) { tail = tail->next; }
 	return tail;
 }
 
